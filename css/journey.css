@@ -1,0 +1,1095 @@
+/* Focused Journey Book: one clean combined card with Today + full calendar. */
+
+#page-roadmap .coach-heading {
+  margin-bottom: 14px;
+}
+
+#page-roadmap .coach-heading .lead {
+  max-width: 760px;
+}
+
+#page-roadmap .coach-heading-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+#page-roadmap .coach-week-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #ffffff14;
+  border: 1px solid #ffffff22;
+  color: #ecede5;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .3px;
+}
+
+#page-roadmap .coach-combined-card {
+  padding: 20px 22px;
+  margin-top: 8px;
+}
+
+#page-roadmap .coach-combined-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.07fr) minmax(0,1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+#page-roadmap .coach-left-panel,#page-roadmap .coach-right-panel {
+  min-width: 0;
+}
+
+#page-roadmap .coach-left-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+#page-roadmap .coach-progress-block {
+  margin-top: auto;
+  min-width: 0;
+}
+
+#page-roadmap .coach-right-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+#page-roadmap .coach-focus-title h2,#page-roadmap .coach-calendar-panel-head h2 {
+  font-family: Inter,sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #f9efd7;
+  margin: 8px 0 0;
+}
+
+#page-roadmap .coach-focus-title h2 {
+  font-size: clamp(23px,2vw,29px);
+  letter-spacing: -.3px;
+}
+
+#page-roadmap .coach-focus-title .coach-people {
+  margin: 12px 0 0;
+  gap: 6px;
+}
+
+#page-roadmap .coach-focus-title .coach-chip {
+  padding: 5px 9px;
+  font-size: 11px;
+}
+
+#page-roadmap .coach-today-compact {
+  display: grid;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+#page-roadmap .coach-today-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+#page-roadmap .coach-today-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 18px;
+  background: linear-gradient(160deg,#23384f,#122134);
+  border: 1px solid #7f96a847;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+#page-roadmap .coach-today-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+#page-roadmap .coach-today-avatar img.failed {
+  display: none;
+}
+
+#page-roadmap .coach-today-avatar .picker-initials {
+  font-size: 26px;
+}
+
+#page-roadmap .coach-today-copy h3 {
+  margin: 0 0 7px;
+  color: #f4ecd8;
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+#page-roadmap .coach-today-sub {
+  color: #d8dde4;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#page-roadmap .coach-today-sub .muted {
+  color: #8fb5bc;
+}
+
+#page-roadmap .coach-today-copy p {
+  margin: 14px 0 0;
+  color: #d7e4ea;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+#page-roadmap .coach-progress-block {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+#page-roadmap .coach-inline-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #c7d4db;
+}
+
+#page-roadmap .coach-progress-block small {
+  display: block;
+  margin-top: 6px;
+  font-size: 10px;
+  color: #a6bcc8;
+}
+
+#page-roadmap .coach-progress-track {
+  margin: 9px 0 6px;
+}
+
+#page-roadmap .coach-today-rich {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-person-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-person-text {
+  min-width: 0;
+  flex: 1;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-talent {
+  margin: 0;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-farm {
+  margin-top: 0;
+}
+
+#page-roadmap .coach-today-rich .coach-mini-tools {
+  margin-top: 2px;
+}
+
+#page-roadmap .coach-done-today:empty {
+  display: none;
+}
+
+#page-roadmap .coach-done-today {
+  display: grid;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+#page-roadmap .coach-done-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 1px solid #87bbaa45;
+  border-radius: 10px;
+  background: #193d3a5c;
+}
+
+#page-roadmap .coach-done-copy {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #c4e8db;
+}
+
+#page-roadmap .coach-done-copy span {
+  overflow-wrap: anywhere;
+}
+
+#page-roadmap .coach-done-undo {
+  white-space: nowrap;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+@media(max-width:430px) {
+  #page-roadmap .coach-done-row {
+    padding: 8px;
+    gap: 6px;
+  }
+  #page-roadmap .coach-done-undo {
+    padding: 6px 8px;
+  }
+}
+
+/* Subtle gap between today's actions and the progress divider. */
+
+#page-roadmap .coach-left-panel #coach-today {
+  margin-bottom: 10px;
+}
+
+#page-roadmap .coach-left-panel .coach-done-today:not(:empty) {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+#page-roadmap .coach-left-panel .coach-progress-block {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin-top: auto;
+}
+
+#page-roadmap .coach-mini-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+#page-roadmap .coach-mini-tools .btn {
+  padding: 8px 11px;
+  font-size: 12px;
+}
+
+#page-roadmap .coach-calendar-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+#page-roadmap .coach-calendar-panel-head .coach-overline {
+  display: block;
+  margin-bottom: 8px;
+}
+
+#page-roadmap .coach-calendar-month {
+  font: 700 18px/1.2 Inter,sans-serif;
+  color: #f3f4f5;
+  margin: 0;
+}
+
+#page-roadmap .coach-calendar {
+  grid-template-columns: repeat(7,minmax(0,1fr));
+  grid-template-rows: 22px;
+  gap: 7px;
+  grid-auto-rows: 96px;
+  align-items: stretch;
+}
+
+#page-roadmap .coach-calendar-weekday {
+  min-width: 0;
+  text-align: center;
+  font-weight: 800;
+  font-size: 10px;
+  color: #9bb6c3;
+  letter-spacing: .65px;
+  text-transform: uppercase;
+  line-height: 16px;
+  align-self: end;
+}
+
+#page-roadmap .coach-calendar-day {
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 9px 4px 8px;
+  border-radius: 11px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  transition: background .15s,border-color .15s;
+}
+
+#page-roadmap .coach-calendar-day span {
+  color: #b7cbd7;
+  font-size: 11px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+#page-roadmap .coach-calendar-day span b {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ebf1ee;
+  line-height: 1.15;
+}
+
+#page-roadmap .coach-calendar-day strong {
+  font-size: 11px;
+  line-height: 1.2;
+  margin: 2px 0 0;
+  font-weight: 750;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+}
+
+#page-roadmap .coach-calendar-day small {
+  font-size: 10px;
+  line-height: 1.15;
+  margin: 0;
+  width: 100%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #aac0cd;
+}
+
+#page-roadmap .coach-calendar-day em {
+  display: none;
+}
+
+#page-roadmap .coach-calendar-day.is-today {
+  background: #283d49;
+  border-color: var(--gold);
+}
+
+#page-roadmap .coach-calendar-day.is-complete {
+  background: #183c36;
+  border-color: #8ed9bd88;
+}
+
+#page-roadmap .coach-calendar-day.is-complete strong {
+  color: #bff2dc;
+}
+
+#page-roadmap .coach-calendar-day:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+
+#page-roadmap .coach-calendar-shortweekday {
+  display: none;
+}
+
+#page-roadmap .coach-right-panel .coach-calendar-note {
+  margin-top: 12px;
+}
+
+#page-roadmap .coach-calendar-note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #b8c4cb;
+  line-height: 1.5;
+}
+
+#page-roadmap .coach-manage {
+  margin: 19px 0 8px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+#page-roadmap .coach-manage>summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  color: #b7cbd3;
+  font-size: 12px;
+  padding: 12px 6px;
+}
+
+#page-roadmap .coach-manage>summary::-webkit-details-marker {
+  display: none;
+}
+
+#page-roadmap .coach-manage>summary::after {
+  content: '▾';
+  color: var(--mint);
+  font-size: 17px;
+}
+
+#page-roadmap .coach-manage[open]>summary::after {
+  content: '▴';
+}
+
+#page-roadmap .coach-manage-hint {
+  margin-left: auto;
+  font-size: 11px;
+  color: #829aab;
+}
+
+#page-roadmap .coach-manage-content {
+  padding-top: 14px;
+}
+
+#page-roadmap .coach-manage-content .coach-edit-grid {
+  margin-top: 12px;
+}
+
+#page-roadmap .coach-manage-content .coach-quickedit {
+  margin-top: 0;
+}
+
+#page-roadmap .coach-manage-content .coach-done-today:not(:empty) {
+  margin: 0 0 16px;
+}
+
+@media(max-width:1400px) {
+  #page-roadmap .coach-combined-grid {
+    grid-template-columns: minmax(0,1fr);
+  }
+  #page-roadmap .coach-heading-right {
+    align-items: flex-start;
+  }
+  #page-roadmap .coach-left-panel {
+    min-height: 0;
+  }
+  #page-roadmap .coach-left-panel .coach-progress-block {
+    margin-top: 18px;
+  }
+}
+
+@media(max-width:760px) {
+  #page-roadmap .coach-combined-card {
+    padding: 18px 16px;
+  }
+  #page-roadmap .coach-combined-grid {
+    gap: 22px;
+  }
+  #page-roadmap .coach-calendar {
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    grid-template-rows: none;
+    grid-auto-rows: 90px;
+  }
+  #page-roadmap .coach-calendar-weekday {
+    display: none;
+  }
+  #page-roadmap .coach-calendar-shortweekday {
+    display: block;
+    font-size: 9px;
+    font-style: normal;
+    margin-bottom: 2px;
+  }
+  #page-roadmap .coach-manage-hint {
+    display: none;
+  }
+}
+
+@media(max-width:430px) {
+  #page-roadmap .coach-calendar {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    grid-auto-rows: 88px;
+  }
+  #page-roadmap .coach-today-row {
+    gap: 10px;
+  }
+  #page-roadmap .coach-today-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+  }
+  #page-roadmap .coach-today-copy h3 {
+    font-size: 18px;
+  }
+  #page-roadmap .coach-focus-title h2 {
+    font-size: 22px;
+  }
+}
+
+/* About is available only from the subtle footer link, not the main sidebar. */
+
+.about-footer-link {
+  border: 0;
+  background: none;
+  color: #99b2c0;
+  cursor: pointer;
+  font: inherit;
+  padding: 2px 4px;
+  text-decoration: underline;
+  text-decoration-color: #7590a055;
+  text-underline-offset: 3px;
+}
+
+.about-footer-link:hover,.about-footer-link:focus-visible {
+  color: #dbece8;
+  text-decoration-color: #dbece8;
+}
+
+.about-content {
+  max-width: 770px;
+  padding: 23px 26px;
+  background: linear-gradient(145deg,#172a40,#102034);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.about-content h2 {
+  font: normal 23px Georgia,serif;
+  color: #f0dfb9;
+  margin: 0 0 8px;
+}
+
+.about-content p {
+  color: #b8cbd5;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0 0 22px;
+}
+
+@media(max-width:600px) {
+  .about-content {
+    padding: 17px;
+  }
+  .about-content h2 {
+    font-size: 20px;
+  }
+}
+
+/* Calendar date details — native, dismissible in-page dialog. */
+
+.coach-day-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  box-sizing: border-box;
+  width: min(780px,calc(100vw - 26px));
+  max-width: 780px;
+  max-height: min(88vh,900px);
+  padding: 0;
+  color: var(--text);
+  border: 1px solid #83b7b273;
+  border-radius: 20px;
+  background: linear-gradient(155deg,#1a2e43,#0c192b);
+  box-shadow: 0 30px 90px #000b;
+  overflow: hidden;
+}
+
+.coach-day-dialog::backdrop {
+  background: #020914bd;
+  backdrop-filter: blur(6px);
+}
+
+.coach-day-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.coach-day-dialog-header {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 23px 25px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.coach-day-dialog-header h2 {
+  font: 400 27px/1.2 Georgia,serif;
+  color: #f6eacf;
+  margin: 6px 0 2px;
+}
+
+.coach-day-dialog-header p {
+  font-size: 12px;
+  color: #a3b9c7;
+  margin: 4px 0 0;
+}
+
+.coach-day-dialog-content {
+  padding: 20px 25px 25px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+  scrollbar-width: thin;
+}
+
+.coach-modal-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #aec5d2;
+  margin: 0 0 15px;
+}
+
+.coach-modal-empty {
+  padding: 28px 16px;
+  text-align: center;
+  background: #102337;
+  border-radius: 13px;
+  border: 1px dashed #67859877;
+  color: #afc2cd;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.coach-modal-group {
+  padding: 17px;
+  background: #11253a;
+  border: 1px solid #67839755;
+  border-radius: 15px;
+  margin-bottom: 13px;
+}
+
+.coach-modal-group.primary {
+  border-color: #a2d6bd88;
+  background: linear-gradient(120deg,#1b3d40,#102b3d);
+}
+
+.coach-modal-person {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.coach-modal-person .coach-today-avatar {
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+  border-radius: 13px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#31516a,#122237);
+  border: 1px solid #779dad5c;
+}
+
+.coach-modal-person .coach-today-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coach-modal-person .coach-today-avatar img.failed {
+  display: none;
+}
+
+.coach-modal-person .coach-today-avatar .picker-initials {
+  font-weight: 800;
+  font-size: 18px;
+  color: #e4f0ef;
+}
+
+.coach-modal-person-details {
+  min-width: 0;
+  flex: 1;
+}
+
+.coach-modal-person-details h3 {
+  font-size: 17px;
+  line-height: 1.3;
+  color: #f2ecdb;
+  margin: 3px 0 4px;
+  overflow-wrap: anywhere;
+}
+
+.coach-modal-person-details p {
+  font-size: 12px;
+  color: #a7c7d1;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.coach-modal-priority {
+  font-size: 10px;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: #9ee5c6;
+  font-weight: 800;
+}
+
+.coach-modal-talent {
+  font-size: 11px;
+  color: #9fb7c6;
+  margin: 11px 0 0;
+  padding: 9px 10px;
+  background: #081b2a80;
+  border-radius: 9px;
+  line-height: 1.6;
+}
+
+.coach-modal-farm {
+  margin-top: 14px;
+  border-top: 1px solid #7591a13c;
+  padding-top: 13px;
+}
+
+.coach-modal-farm-title {
+  font-size: 14px;
+  color: #f2e6c6;
+  font-weight: 750;
+  margin: 0 0 4px;
+}
+
+.coach-modal-farm-location {
+  color: #a5bbcb;
+  font-size: 12px;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.coach-modal-books {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 9px;
+}
+
+.coach-modal-book {
+  min-width: 0;
+  padding: 10px 7px;
+  border-radius: 11px;
+  border: 1px solid #7592a04d;
+  background: #0b1b2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.coach-modal-book-icon {
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 11px;
+  width: 62px;
+  height: 62px;
+  overflow: hidden;
+  border: 1px solid #7b9aaf40;
+  background: linear-gradient(150deg,#23384e,#111e31);
+}
+
+.coach-modal-book-icon img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  object-fit: contain;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.coach-modal-book-icon img.is-failed {
+  display: none;
+}
+
+.coach-modal-book-icon .material-entry-fallback {
+  font-size: 11px;
+}
+
+.coach-modal-book strong {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #dce6e8;
+  overflow-wrap: anywhere;
+}
+
+.coach-modal-book small {
+  font-size: 10px;
+  color: #9ac9b7;
+  line-height: 1.2;
+}
+
+.coach-modal-other {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px 11px;
+  border-radius: 10px;
+  background: #0b1b2e;
+  border: 1px solid #7592a047;
+}
+
+.coach-modal-other-icon {
+  font-size: 25px;
+  flex: 0 0 38px;
+  text-align: center;
+}
+
+.coach-modal-other strong {
+  display: block;
+  font-size: 12px;
+  color: #f0e9d8;
+}
+
+.coach-modal-other small {
+  display: block;
+  font-size: 11px;
+  color: #9eb5c5;
+  margin-top: 2px;
+}
+
+.coach-day-dialog-footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 25px 16px;
+  border-top: 1px solid var(--line);
+  color: #95afbe;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.coach-day-dialog-footer button {
+  flex: none;
+  margin-left: auto;
+}
+
+@media(max-width:640px) {
+  .coach-day-dialog {
+    width: calc(100vw - 16px);
+    max-height: 92vh;
+    border-radius: 15px;
+  }
+  .coach-day-dialog-header {
+    padding: 16px 16px 12px;
+  }
+  .coach-day-dialog-header h2 {
+    font-size: 23px;
+  }
+  .coach-day-dialog-content {
+    padding: 14px;
+  }
+  .coach-modal-group {
+    padding: 12px;
+  }
+  .coach-modal-books {
+    gap: 5px;
+  }
+  .coach-modal-book {
+    padding: 7px 4px;
+  }
+  .coach-modal-book-icon {
+    width: 48px;
+    height: 48px;
+  }
+  .coach-modal-book strong {
+    font-size: 10px;
+  }
+  .coach-day-dialog-footer {
+    padding: 12px 15px;
+    flex-wrap: wrap;
+  }
+}
+
+/* Schedule-first settings: optional inventory tracking, no added dashboard cards. */
+
+#page-roadmap .coach-heading-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#page-roadmap .coach-settings-trigger {
+  border: 1px solid #829cac55;
+  border-radius: 11px;
+  padding: 7px 11px;
+  color: #bedbd8;
+  background: #203648;
+  font: 650 11px/1.2 Inter,sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#page-roadmap .coach-settings-trigger:hover,#page-roadmap .coach-settings-trigger:focus-visible {
+  border-color: #91dbc1;
+  color: #e6f7ed;
+  background: #254d52;
+}
+
+#page-roadmap .coach-progress-block[hidden] {
+  display: none!important;
+}
+
+#page-roadmap #coach-active.tracking-off #coach-quickedit,#page-roadmap #coach-active.tracking-off .coach-edit-grid {
+  display: none!important;
+}
+
+.coach-preferences-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(440px,calc(100vw - 24px));
+  max-height: 85vh;
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 0;
+  border: 1px solid #7da8a477;
+  border-radius: 17px;
+  color: #eaf0f1;
+  background: linear-gradient(150deg,#1a3145,#0d1d2f);
+  box-shadow: 0 22px 65px #0009;
+}
+
+.coach-preferences-dialog::backdrop {
+  background: #030e20b9;
+  backdrop-filter: blur(4px);
+}
+
+.coach-pref-header {
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid #819eaa35;
+}
+
+.coach-pref-header h2 {
+  font: 400 23px Georgia,serif;
+  margin: 7px 0 0;
+  color: #f2e9d4;
+}
+
+.coach-pref-body {
+  padding: 19px 22px 20px;
+}
+
+.coach-pref-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #7e99a649;
+  background: #0f2436;
+}
+
+.coach-pref-text {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  flex: 1;
+}
+
+.coach-pref-text strong {
+  font-size: 14px;
+  color: #f0f0eb;
+}
+
+.coach-pref-text small {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a9c1ca;
+}
+
+#coach-toggle-tracking {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 44px;
+  height: 26px;
+  flex: 0 0 44px;
+  border-radius: 999px;
+  border: 1px solid #839bac;
+  background: #32475a;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+#coach-toggle-tracking::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  background: #f0f5f4;
+  transition: transform .15s;
+}
+
+#coach-toggle-tracking:checked {
+  background: #317e70;
+  border-color: #8ad4bb;
+}
+
+#coach-toggle-tracking:checked::before {
+  transform: translateX(18px);
+}
+
+#coach-toggle-tracking:focus-visible {
+  outline: 2px solid #9fe9cf;
+  outline-offset: 3px;
+}
+
+.coach-pref-note {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #99b5bf;
+  margin: 12px 0 18px;
+}
+
+.coach-pref-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media(max-width:760px) {
+  #page-roadmap .coach-heading-actions {
+    justify-content: flex-start;
+  }
+  #page-roadmap .coach-settings-trigger {
+    padding: 7px 9px;
+  }
+  .coach-pref-header {
+    padding: 17px 16px 12px;
+  }
+  .coach-pref-body {
+    padding: 15px 16px;
+  }
+}
+
+.about-github { display:flex; align-items:center; gap:14px; color:var(--mint); padding:14px; border:1px solid #90dec545; border-radius:12px; background:#14283b; text-decoration:none; margin:0 0 24px; max-width:420px; }
+.about-github svg { width:30px; height:30px; color:var(--text); flex:none; }
+.about-github span:nth-child(2) { flex:1; }
+.about-github strong,.about-github small { display:block; }
+.about-github small { color:var(--sub); }
+.about-footer-link[hidden] { display:none; }

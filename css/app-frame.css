@@ -1,0 +1,95 @@
+/* Shared application frame. Page-specific layouts may change their content,
+   but must not move the sidebar, breadcrumb, server selector or title origin. */
+:root {
+  --frame-inline: clamp(14px, 2.3vw, 34px);
+  --frame-top: 12px;
+  --frame-header-gap: 14px;
+  --frame-title-size: clamp(28px, 2.45vw, 34px);
+  --frame-eyebrow-size: 10px;
+  --frame-lead-size: 12px;
+}
+
+/* Reserve the same space on a scrolling page and on the fixed workspace. */
+html { scrollbar-gutter: stable; }
+.app > .main {
+  margin: 0 auto;
+  align-self: flex-start;
+  padding: var(--frame-top) var(--frame-inline) 18px;
+}
+.app > .sidebar { overflow-y: auto; scrollbar-width: thin; }
+.main > .topbar {
+  flex: none;
+  min-height: 38px;
+  margin: 0 0 var(--frame-header-gap);
+}
+.topbar .breadcrumb { min-width: 0; }
+.topbar .breadcrumb svg { flex: none; }
+.topbar .breadcrumb-prefix, .topbar .breadcrumb-divider { flex: none; }
+.topbar .breadcrumb strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar .top-meta .pj-select, .topbar .top-meta > select { width: 132px; max-width: 132px; flex: none; }
+.topbar .top-meta .pj-select-button { min-height: 38px; }
+
+/* Same title style and starting line for every page; only the contents below vary. */
+.main > .page > .eyebrow, #page-roadmap .coach-heading .eyebrow {
+  display: block;
+  font-size: var(--frame-eyebrow-size);
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+}
+.main > .page > .page-title, #page-roadmap .coach-heading .page-title {
+  font-size: var(--frame-title-size);
+  line-height: 1.15;
+  margin: 4px 0 6px;
+}
+.main > .page > .lead, #page-roadmap .coach-heading .lead {
+  font-size: var(--frame-lead-size);
+  line-height: 1.45;
+  margin: 0 0 14px;
+  max-width: none;
+}
+#page-roadmap .coach-heading { align-items: flex-start; margin-bottom: 0; }
+#page-roadmap .coach-heading > div:first-child { min-width: 0; }
+#page-roadmap .coach-heading-right { flex: none; align-items: flex-end; }
+#page-roadmap .coach-onboarding { margin-top: 0; }
+#page-roadmap:has(#coach-active:not([hidden])) .coach-heading { margin-bottom: 8px; }
+#page-settings { max-width: none; margin-inline: 0; }
+
+/* Inventory retains its fixed viewport and internal goals/form scroll areas. */
+@media (min-width: 801px) {
+  .app > .main:has(#page-farming.active) { padding-bottom: 9px; }
+  #page-farming > .lead { margin-bottom: 10px; }
+}
+@media (min-width: 801px) and (max-height: 700px) {
+  :root { --frame-top: 8px; --frame-header-gap: 8px; --frame-title-size: 28px; }
+  .app > .main:has(#page-farming.active) { padding-bottom: 7px; }
+  #page-farming > .lead { margin-bottom: 7px; }
+}
+@media (min-width: 801px) and (max-height: 620px) {
+  .sidebar { padding-top: 15px; padding-bottom: 12px; }
+  .sidebar .brand { padding-bottom: 15px; }
+  .sidebar .nav-title { margin-bottom: 5px; }
+  .sidebar .nav { gap: 3px; }
+  .sidebar .nav-btn { padding-block: 9px; font-size: 12px; }
+}
+@media (min-width: 801px) and (max-width: 999px) {
+  :root { --frame-inline: 12px; }
+  .sidebar { width: 170px; flex-basis: 170px; padding-inline: 9px; }
+  .sidebar .brand { gap: 7px; padding-inline: 2px; }
+  .sidebar .brand-name { font-size: 16px; }
+  .sidebar .nav-btn { font-size: 12px; gap: 7px; padding-inline: 8px; }
+  .topbar .breadcrumb-prefix, .topbar .breadcrumb-divider { display: none; }
+}
+@media (max-width: 800px) {
+  :root { --frame-inline: 17px; --frame-top: 12px; --frame-header-gap: 12px; --frame-title-size: 27px; }
+  .app > .main { padding-bottom: calc(98px + env(safe-area-inset-bottom, 0px)); }
+  .app > .main > .topbar { min-height: 0; }
+  .topbar .top-meta .pj-select, .topbar .top-meta > select { width: 138px; max-width: 138px; }
+  .topbar .top-meta .pj-select-button { min-height: 36px; }
+  #page-roadmap .coach-heading { margin-bottom: 10px; }
+  #page-roadmap .coach-heading .lead { margin-bottom: 2px; }
+  #page-roadmap .coach-heading-right { align-items: center; }
+}
+@media (max-width: 360px) {
+  :root { --frame-inline: 14px; }
+  .topbar .top-meta .pj-select, .topbar .top-meta > select { width: 123px; max-width: 123px; }
+}

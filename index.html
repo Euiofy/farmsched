@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101b2c">
+    <meta name="description" content="Plan 3-4 weeks of Genshin Impact farming with daily character priorities, talent books, progress tracking, and teams.">
+    <title>Teyvat Companion</title>
+    <link rel="icon" href="https://upload-os-bbs.hoyolab.com/upload/2023/12/18/109361200/4f31f8388e5583d0ef8facaf6dd9b579_4729751887849201623.png?x-oss-process=image%2Fresize%2Cs_1000%2Fauto-orient%2C0%2Finterlace%2C1%2Fformat%2Cwebp%2Fquality%2Cq_70">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/planner-and-shell.css">
+    <link rel="stylesheet" href="./css/character-picker.css">
+    <link rel="stylesheet" href="./css/material-schedule.css">
+    <link rel="stylesheet" href="./css/journey.css">
+    <link rel="stylesheet" href="./css/planner-and-journey-layout.css">
+    <link rel="stylesheet" href="./css/materials-and-pickers.css">
+    <link rel="stylesheet" href="./css/teams-and-roster.css">
+    <link rel="stylesheet" href="./css/dropdowns-and-inventory.css">
+    <link rel="stylesheet" href="./css/mobile-and-calendar.css">
+    <link rel="stylesheet" href="./css/rarity-and-weapon-journey.css">
+    <link rel="stylesheet" href="./css/settings-and-notifications.css">
+    <link rel="stylesheet" id="pjb-material-rarity-styles" href="./css/final-refinements.css">
+    <link rel="stylesheet" href="./css/plan-editor.css">
+    <link rel="stylesheet" href="./css/app-frame.css">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m15.7 8.3-2.2 5.2-5.2 2.2 2.2-5.2z" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+      <symbol id="home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21H3V10.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 21v-8h6v8" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+      <symbol id="droplet" viewBox="0 0 24 24"><path d="M12 2S5.5 9.2 5.5 14.2a6.5 6.5 0 0 0 13 0C18.5 9.2 12 2 12 2Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 16c.2 1.3 1.1 2.2 2.4 2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+      <symbol id="nav-profile" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="star" viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5 9.3 17 19.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="list" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M8 9h8M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+      <symbol id="bag" viewBox="0 0 24 24"><path d="M4 8h16l-1 13H5L4 8Zm4 0V6a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6m4-6v6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4m10-4v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+      <symbol id="mountain" viewBox="0 0 24 24"><path d="m2 20 8-14 4 7 2-3 6 10H2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+
+      <symbol id="nav-journey" viewBox="0 0 24 24"><path d="M6 4.5h9.5A2.5 2.5 0 0 1 18 7v12.5a16.3 16.3 0 0 0-6-1.15A16.3 16.3 0 0 0 6 19.5V4.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M6 19.5V7A2.5 2.5 0 0 1 8.5 4.5H18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m12 8.2.7 1.45 1.6.23-1.15 1.12.27 1.58L12 11.8l-1.42.78.27-1.58-1.15-1.12 1.6-.23L12 8.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+      <symbol id="nav-materials" viewBox="0 0 24 24"><path d="M4 7.5 12 4l8 3.5-8 3.5-8-3.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 12.25 12 15.75l8-3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 17 12 20l8-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="nav-planner" viewBox="0 0 24 24"><path d="M8 4.5h8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M9 3h6v3H9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><rect x="5" y="5.5" width="14" height="15.5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m8.25 12 2 2 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.25 17h7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+      <symbol id="nav-settings" viewBox="0 0 24 24"><path d="M12 3.75 13.3 5.9a6.6 6.6 0 0 1 1.55.65l2.4-.6 1.5 2.6-1.55 1.92c.08.34.12.69.12 1.03s-.04.69-.12 1.03l1.55 1.92-1.5 2.6-2.4-.6a6.6 6.6 0 0 1-1.55.65L12 20.25l-1.3-2.15a6.6 6.6 0 0 1-1.55-.65l-2.4.6-1.5-2.6 1.55-1.92A4.6 4.6 0 0 1 6.68 12c0-.34.04-.69.12-1.03L5.25 9.05l1.5-2.6 2.4.6c.49-.28 1-.5 1.55-.65L12 3.75Z" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linejoin="round"/><circle cx="12" cy="12" r="2.7" fill="none" stroke="currentColor" stroke-width="1.55"/></symbol>
+    </svg>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark"><svg><use href="#compass"></use></svg></div>
+          <div>
+            <div class="brand-name">Teyvat Companion</div>
+            <div class="brand-caption">TRAVELER'S DESK</div>
+          </div>
+        </div>
+        <div class="nav-title">YOUR ADVENTURE</div>
+        <nav class="nav" aria-label="Main navigation">
+          <button class="nav-btn active" data-go="roadmap" aria-current="page"><svg><use href="#nav-journey"></use></svg>Paimon's Journey Book</button>
+          <button class="nav-btn" data-go="materials"><svg><use href="#nav-materials"></use></svg>Material Schedule</button>
+          <button class="nav-btn" data-go="farming"><svg><use href="#bag"></use></svg>Inventory Board</button>
+          <button class="nav-btn" data-go="planner"><svg><use href="#nav-planner"></use></svg>Build Planner</button>
+          <button class="nav-btn" data-go="settings"><svg><use href="#nav-settings"></use></svg>Settings</button>
+        </nav>
+        <div class="sidebar-spacer">
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumb"><svg><use href="#compass"></use></svg><span class="breadcrumb-prefix">Adventure tools</span><span class="breadcrumb-divider" style="opacity:.5">/</span><strong id="crumb">Paimon's Journey Book</strong></div>
+          <div class="top-meta">
+            <div class="server-readout" title="The farming day changes at 04:00 on your selected game server."><span class="date-label" id="today-label"></span><span id="server-reset-label" class="server-reset-label"></span></div>
+            <select id="region" class="region-picker" aria-label="Select game server">
+              <option value="Asia">Asia server</option><option value="Europe">Europe server</option><option value="America">America server</option><option value="TW">TW / HK / MO</option>
+            </select>
+          </div>
+        </header>
+
+        <section id="page-settings" class="page" aria-label="Settings">
+          <span class="eyebrow">MAKE IT YOURS</span><h1 class="page-title">Settings</h1>
+          <div class="panel settings-server">
+            <div>
+              <h3>Game server</h3>
+              <p class="coach-pref-note">Farming schedules follow the daily 4 AM server reset.</p>
+            </div><label class="settings-server-field"><span class="input-label">Selected server</span><select id="settings-region" class="select" aria-label="Game server in settings">
+                <option value="Asia">Asia server</option><option value="Europe">Europe server</option><option value="America">America server</option><option value="TW">TW / HK / MO</option>
+              </select></label></div>
+          <div class="settings-farming-grid" id="coach-farming-settings">
+            <div class="panel coach-tracking-settings">
+              <h3>Material tracking</h3><label class="coach-pref-toggle" for="coach-toggle-tracking">
+                <span class="coach-pref-text"><strong>Track my materials</strong><small>Show inventory progress and remaining talent books.</small></span>
+                <input id="coach-toggle-tracking" type="checkbox" role="switch" aria-describedby="coach-pref-tracking-note">
+              </label>
+              <p id="coach-pref-tracking-note" class="coach-pref-note">Off by default. Your saved quantities and targets are kept when tracking is off.</p>
+            </div>
+            <section id="coach-plan-options" class="panel coach-plan-options" aria-label="Character farming plan">
+              <h3>Character farming plan</h3>
+              <form id="coach-settings"><label>Plan duration<select class="select" id="coach-edit-weeks">
+                    <option value="3">3 weeks</option><option value="4">4 weeks</option>
+                  </select></label><label>Daily Resin budget<select class="select" id="coach-edit-budget">
+                    <option value="80">80</option><option value="120">120</option><option value="160">160</option><option value="200">200</option>
+                  </select></label><button type="submit" class="btn btn-outline">Update plan</button><button type="button" class="btn btn-outline coach-restart-action" id="coach-restart">Start a different character plan</button></form>
+              <div class="coach-settings-shortcuts">
+                <p>Required talent books are automatically tracked in Inventory Board.</p>
+                <div><button type="button" class="inline-link" data-go="farming">Open Inventory Board</button><button type="button" class="inline-link" data-go="planner">Edit talent levels</button></div>
+              </div>
+            </section>
+            <section id="weapon-plan-options" class="panel coach-plan-options">
+              <h3>Weapon farming plan</h3>
+              <form id="weapon-settings"><label>Plan duration<select class="select" id="weapon-edit-weeks">
+                    <option value="3">3 weeks</option><option value="4">4 weeks</option>
+                  </select></label><label>Daily Resin budget<select class="select" id="weapon-edit-budget">
+                    <option value="80">80</option><option value="120">120</option><option value="160">160</option><option value="200">200</option>
+                  </select></label><button class="btn btn-outline" type="submit">Update plan</button><button type="button" class="btn btn-outline coach-restart-action" id="weapon-restart">Start a different weapon plan</button></form>
+              <div class="coach-settings-shortcuts"><button type="button" class="inline-link" data-go="farming">Open Inventory Board</button></div>
+            </section>
+          </div>
+          <section id="coach-backup-settings" class="panel coach-backup-settings" aria-label="Data and backups">
+            <h3>Data &amp; backups</h3>
+            <div class="save-status"><span class="save-dot"></span> Saved on this device</div>
+            <p class="coach-backup-description">Your private trackers are stored on this device. Export a backup to keep a copy of your plans, roster, teams, and inventory, or import a previous backup to restore them.</p>
+            <div class="coach-backup-actions"><button type="button" class="btn btn-secondary" id="export-data">Export backup</button><button type="button" class="btn btn-outline" id="import-open">Import backup</button></div>
+            <input id="import-file" type="file" accept="application/json,.json" hidden>
+            <p class="coach-backup-note">Importing a backup replaces the saved data on this device. </p>
+            <p class="coach-backup-status" id="coach-backup-status" role="status" aria-live="polite">
+            </p>
+          </section>
+          <section class="panel farming-reminder-settings" aria-labelledby="reminder-heading">
+            <h3 id="reminder-heading">Farming notifications</h3>
+            <p class="coach-pref-note" id="reminder-platform-note">
+            </p>
+            <label class="coach-pref-toggle" for="reminder-enabled"><span class="coach-pref-text"><strong>Daily farming reminder</strong><small>Remember to complete your scheduled farming.</small></span><input id="reminder-enabled" type="checkbox" role="switch"></label>
+            <div id="reminder-options" hidden>
+              <label class="reminder-field"><span>Reminder time (device time)</span><input class="input" type="time" id="reminder-time" value="18:00"></label>
+              <label class="coach-pref-toggle" for="reminder-spam"><span class="coach-pref-text"><strong>Paimon Spam Mode</strong><small>YOU DIDN'T DO YOUR FARMING YET!!</small></span><input id="reminder-spam" type="checkbox" role="switch"></label>
+              <div id="reminder-spam-options" class="reminder-fields" hidden><label class="reminder-field"><span>Repeat every</span><select class="select" id="reminder-interval">
+                    <option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">1 hour</option><option value="120">2 hours</option>
+                  </select></label><label class="reminder-field"><span>Maximum follow-ups per game day</span><select class="select" id="reminder-limit">
+                    <option value="3">3</option><option value="5">5</option><option value="10">10</option>
+                  </select></label></div>
+              <label class="coach-pref-toggle" for="reminder-push"><span class="coach-pref-text"><strong>Phone push (Android, via ntfy)</strong><small>Real push notifications, even when this site is closed.</small></span><input id="reminder-push" type="checkbox" role="switch"></label>
+              <div id="reminder-push-options" hidden>
+                <p class="coach-pref-note">1. Install the <a href="https://play.google.com/store/apps/details?id=io.heckel.ntfy" target="_blank" rel="noopener">ntfy app</a>. 2. In the app, subscribe to this topic (default server ntfy.sh): <code id="reminder-push-topic" style="word-break:break-all"></code></p>
+                <div class="reminder-actions"><button type="button" id="reminder-push-copy" class="btn btn-outline">Copy topic</button><a id="reminder-push-open" class="btn btn-outline" href="#">Open in ntfy</a></div>
+                <p class="coach-pref-note">Anyone who knows this topic can read your reminders, so keep it private. Reminders are scheduled up to 3 days ahead; open this site at least that often.</p>
+              </div>
+              <div class="reminder-actions"><button type="button" id="reminder-save" class="btn btn-mint">Save reminders</button><button type="button" id="reminder-test" class="btn btn-outline">Test notification</button></div>
+            </div>
+            <p id="reminder-status" class="coach-pref-note" role="status" aria-live="polite">
+            </p>
+          </section>
+          <div class="settings-about"><button type="button" class="inline-link" data-go="about">About Teyvat Companion</button></div>
+        </section>
+
+        <section id="page-overview" class="page" aria-label="Legacy overview (not in navigation)">
+          <div id="coach-home-card">
+          </div>
+          <div class="hero">
+            <svg class="hero-art" viewBox="0 0 960 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><radialGradient id="moonGlow"><stop stop-color="#d5e8dc" stop-opacity=".52"/><stop offset="1" stop-color="#b8d5de" stop-opacity="0"/></radialGradient><linearGradient id="mountA" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#536c7b"/><stop offset="1" stop-color="#17334c"/></linearGradient></defs>
+              <circle cx="766" cy="88" r="118" fill="url(#moonGlow)"/><circle cx="766" cy="88" r="47" fill="#e9e3c8" opacity=".85"/><path d="M500 320 648 122 711 205 763 148 899 320Z" fill="#577484" opacity=".7"/><path d="M559 320 720 159 815 246 876 184 1045 320Z" fill="url(#mountA)"/><path d="M570 320 676 227 726 266 811 188 957 320Z" fill="#2e5368"/><path d="M525 320 619 260 693 305 776 247 923 320Z" fill="#193f54"/><path d="M600 316h350" stroke="#a5ced1" stroke-opacity=".14" stroke-width="2"/><g fill="#dcebe5" opacity=".65"><circle cx="612" cy="60" r="1.8"/><circle cx="684" cy="34" r="1.7"/><circle cx="915" cy="72" r="1.5"/><circle cx="850" cy="39" r="1.7"/><circle cx="581" cy="102" r="1.5"/><circle cx="944" cy="146" r="1.7"/></g><g stroke="#aacbd2" stroke-width="2" opacity=".3"><path d="m880 111 0 11m-5.5-5.5h11M715 44v8m-4-4h8"/></g>
+            </svg>
+            <div class="hero-copy"><span class="eyebrow">A LITTLE HELP FOR EVERY ADVENTURE</span><h1>Your journey through <em>Teyvat, organized.</em></h1>
+              <p>Less time keeping track, more time exploring. A cozy home for your character builds, farming schedules and materials.</p><button class="btn btn-primary" type="button" data-go="planner">Find out who to build <svg><use href="#arrow"></use></svg></button></div>
+          </div>
+
+          <div class="planner-minitask">
+            <div><span class="eyebrow">TODAY'S BUILD PRIORITY</span><strong id="home-build-name">Add your characters to create a plan</strong><small id="home-build-note">The smart planner picks an available talent domain for your roster.</small></div><button class="btn btn-primary" data-go="planner">Open build planner <svg><use href="#arrow"></use></svg></button></div>
+
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">At a glance</h2>
+              <p class="section-sub">A snapshot of the things worth keeping track of.</p>
+            </div>
+          </div>
+          <div class="cards4">
+            <div class="stat-card">
+              <div class="stat-head">Talent Books Today <span class="stat-icon" style="color:var(--blue)"><svg><use href="#calendar"></use></svg></span></div>
+              <div class="stat-num" id="stat-materials">8</div>
+              <div class="stat-foot" id="stat-materials-foot">Available talent book series</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-head">Farming Projects <span class="stat-icon" style="color:var(--purple)"><svg><use href="#bag"></use></svg></span></div>
+              <div class="stat-num" id="stat-farm">0</div>
+              <div class="stat-foot" id="stat-farm-foot">Track the materials you need</div>
+            </div>
+          </div>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Your adventurer's notes</h2>
+              <p class="section-sub">A few gentle reminders to keep the journey going.</p>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Today's available materials</h3>
+                  <p>Domain rotations on your selected server.</p>
+                </div><button class="inline-link" data-go="materials">See all <svg width="13" height="13"><use href="#arrow"></use></svg></button></div>
+              <div class="mini-tasks" id="overview-materials">
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Where to next?</h3>
+                  <p>Jump straight back into planning.</p>
+                </div>
+              </div>
+              <div class="overview-adv">
+                <div class="adv-row">
+                  <div class="adv-icon"><svg><use href="#bag"></use></svg></div>
+                  <div>
+                    <div class="adv-title">Plan your materials</div>
+                    <div class="adv-desc" id="quick-farm">Make every domain run count.</div>
+                  </div><button class="inline-link" data-go="farming">Open</button></div>
+                <div class="info-separator">
+                </div>
+                <div class="adv-row">
+                  <div class="adv-icon"><svg><use href="#calendar"></use></svg></div>
+                  <div>
+                    <div class="adv-title">Check the weekly schedule</div>
+                    <div class="adv-desc">Talent books, weapon materials and their farming days.</div>
+                  </div><button class="inline-link" data-go="materials">Open</button></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="page-materials" class="page" aria-label="Genshin material farming weekly schedule">
+          <span class="eyebrow">KNOW WHAT'S OPEN</span><h1 class="page-title">Material Schedule</h1>
+          <p class="lead">The weekly guide for every talent book series and weapon ascension material. Choose a day, filter by region or material, and see where to spend your Resin.</p>
+          <div class="material-intro">
+            <div><strong id="material-heading">Your farming calendar</strong><p id="material-server-note">Every domain changes its available rewards with the 04:00 server reset.</p>
+            </div><span class="material-today" id="material-badge">Sunday opens everything ✦</span></div>
+          <span id="material-week-anchor" aria-hidden="true"></span>
+          <div class="material-week" id="material-week" role="group" aria-label="Choose a day of the week">
+          </div>
+          <div class="material-personal" id="material-personal" aria-live="polite">
+          </div>
+          <div class="material-toolbar">
+            <div class="field search"><label class="input-label" for="material-search">Find a material, character, or domain</label><input class="input" id="material-search" type="search" placeholder="e.g. Diligence, Xiangling, Taishan..." autocomplete="off"></div>
+            <div class="field"><label class="input-label" for="material-region">Region</label><select class="select" id="material-region">
+                <option value="all">All regions</option>
+              </select>
+            </div>
+          </div>
+          <div class="material-tabs" role="group" aria-label="Filter material types"><button type="button" class="material-tab active" data-material-type="all" aria-pressed="true">All domain materials</button><button type="button" class="material-tab" data-material-type="talent" aria-pressed="false">Talent books</button><button type="button" class="material-tab" data-material-type="weapon" aria-pressed="false">Weapon ascension</button><button type="button" class="material-tab" data-material-type="other" aria-pressed="false">Other materials</button></div>
+          <div class="material-section-label">
+            <h2 id="material-day-heading">Materials available today</h2><small id="material-count">Browse by day</small></div>
+          <div id="material-results" class="material-results" aria-live="polite">
+          </div>
+          <div class="material-weekly-summary">
+            <h2>Whole week at a glance</h2>
+            <p>The same three material series repeat across all regions. Sunday lets you choose any series within each domain.</p>
+            <div class="material-week-grid" id="material-week-grid">
+            </div>
+          </div>
+        </section>
+
+        <section id="page-planner" class="page" aria-label="Smart Genshin character build planner">
+          <span class="eyebrow">PLAN YOUR NEXT BUILD</span><h1 class="page-title">Build Planner</h1>
+          <p class="lead">Manage your character builds, set talent goals, and create teams for your next adventure.</p>
+          <div class="section-header roster-section-heading">
+            <div>
+              <h2 class="section-title">Characters you're building</h2>
+              <p class="section-sub">Choose characters by portrait, then set priority and current → target talent levels. The planner only recommends characters you've added.</p>
+            </div>
+            <div class="roster-header-actions"><button type="button" class="btn btn-outline roster-quick-remove" id="roster-quick-remove" aria-haspopup="dialog" aria-controls="roster-remove-dialog" disabled><svg aria-hidden="true"><use href="#trash"/></svg>Quick remove</button><label class="roster-view-control" for="roster-portrait-toggle"><span>Portrait view</span><span class="switch"><input type="checkbox" id="roster-portrait-toggle" role="switch" aria-label="Portrait view" aria-controls="planner-roster"><span></span></span></label><span class="section-badge" id="roster-count">0 characters</span><button type="button" class="btn btn-outline" id="roster-collapse-toggle" aria-expanded="true" aria-controls="build-roster-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg><span id="roster-collapse-label">Hide roster</span></button></div>
+          </div>
+          <div class="plan-grid planner-workspace" style="margin-top:0">
+            <div class="panel planner-roster-panel" id="build-roster-panel"><label class="picker-search" id="roster-portrait-search-wrap" hidden><svg aria-hidden="true"><use href="#search"></use></svg><input id="roster-portrait-search" type="search" placeholder="Search your characters..." autocomplete="off" aria-label="Search your build roster" aria-controls="planner-roster"></label><div id="planner-roster" class="planner-roster">
+              </div><span id="roster-page-label" class="planner-page-label" aria-live="polite"></span><div class="planner-pagination" id="roster-pagination" role="group" aria-label="Build roster pagination" hidden><button class="saved-team-arrow" type="button" id="roster-prev" aria-label="Previous build roster page" aria-controls="planner-roster"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><select id="roster-page" aria-label="Jump to build roster page" aria-controls="planner-roster">
+                </select><button class="saved-team-arrow" type="button" id="roster-next" aria-label="Next build roster page" aria-controls="planner-roster"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div>
+            </div>
+            <div class="panel" id="planner-add-panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Add a character</h3>
+                  <p>Find their portrait below, then choose priority and focus.</p>
+                </div>
+              </div>
+              <form id="planner-add-form">
+                <div class="picker-shell" aria-label="Browse characters to add to the roster">
+                  <div class="picker-header"><strong>Pick a character</strong><span class="picker-hint">Search or filter by element</span></div>
+                  <div id="planner-pick-selected" class="picker-summary">Choose a portrait below</div><label class="picker-search"><svg aria-hidden="true"><use href="#search"></use></svg><input id="planner-pick-search" type="search" placeholder="Search characters..." autocomplete="off" aria-label="Search roster characters"></label><div class="picker-elements" id="planner-pick-filters" aria-label="Filter roster by element">
+                  </div>
+                  <div class="picker-grid" id="planner-pick-grid" aria-label="Scrollable character portrait roster" tabindex="0">
+                  </div>
+                  <div class="planner-picker-footer">
+                    <div class="picker-foot"><span id="planner-pick-results" aria-live="polite">Browse the roster</span></div>
+                  </div>
+                </div>
+                <div id="planner-add-options"><input id="planner-char" type="hidden" value=""><datalist id="planner-names"></datalist><div class="field-grid">
+                    <div class="field"><label class="input-label" for="planner-priority">Priority</label><select class="select" id="planner-priority">
+                        <option value="high">High — build next</option><option value="medium" selected>Medium — build soon</option><option value="low">Low — later</option>
+                      </select>
+                    </div>
+                    <div class="field"><label class="input-label" for="planner-focus">First talent to level</label><select class="select" id="planner-focus">
+                        <option value="auto">Use suggested focus</option><option value="n">Normal Attack</option><option value="s">Elemental Skill</option><option value="b">Elemental Burst</option>
+                      </select>
+                    </div>
+                  </div><button class="btn btn-primary" type="submit" style="width:100%">+ Add to my build roster</button>
+                  <div class="section-header">
+                    <h3 class="section-title" style="font-size:17px">Quick add</h3>
+                  </div>
+                  <div id="planner-quick-add" class="team-tags">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Your teams</h2>
+              <p class="section-sub">An active team gets a boost in the daily recommendation. You can save multiple teams.</p>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="panel">
+              <div class="panel-head saved-team-head">
+                <div>
+                  <h3>Saved team lineups</h3>
+                  <p>Drag members to reorder, or edit right here. Tap the team counter to browse all teams.</p>
+                </div>
+                <div class="saved-team-nav" id="saved-team-nav" role="group" aria-label="Browse saved teams" hidden><button type="button" class="btn btn-outline" id="saved-team-quick-remove" aria-haspopup="dialog" aria-controls="team-remove-dialog" disabled><svg aria-hidden="true"><use href="#trash"/></svg>Quick remove</button><button type="button" id="saved-team-prev" class="saved-team-arrow" aria-label="Previous saved team" title="Previous team" aria-controls="planner-teams"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><button type="button" id="saved-team-jump" class="saved-team-jump" aria-label="Browse all saved teams" title="Browse all saved teams" aria-haspopup="dialog" aria-controls="saved-team-picker"><span id="saved-team-count" class="saved-team-count" aria-live="polite">1 / 1</span><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><button type="button" id="saved-team-next" class="saved-team-arrow" aria-label="Next saved team" title="Next team" aria-controls="planner-teams"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div>
+              </div>
+              <div class="team-cards" id="planner-teams">
+              </div>
+            </div>
+            <div class="panel" id="planner-team-editor">
+              <div class="panel-head">
+                <div>
+                  <h3 id="planner-team-heading">Create a team</h3>
+                  <p id="planner-team-help">Tap a slot to choose a character. Drag the grip to swap positions, or tap two grips.</p>
+                </div>
+              </div>
+              <form id="planner-team-form">
+                <div class="field"><label class="input-label" for="planner-team-name">Team name (optional)</label><input class="input" id="planner-team-name" maxlength="70" placeholder="Team 1"></div>
+                <div class="team-form-grid" id="planner-team-slots">
+                  <div class="team-position" data-team-position="0" data-team-group="draft">
+                    <div class="team-position-head"><span>Slot 1</span><button type="button" class="team-move-handle" aria-label="Move slot 1" title="Drag to swap, or select two slots" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="5" r="1.7"/><circle cx="15" cy="5" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="19" r="1.7"/><circle cx="15" cy="19" r="1.7"/></svg></button></div><input type="hidden" id="planner-slot-0" value=""><div class="team-slot-control"><button type="button" class="team-pick-slot" data-team-slot="0"><span class="team-pick-slot-portrait" id="team-slot-img-0">✦</span><span id="team-slot-label-0">Choose character</span><span class="team-pick-slot-plus" aria-hidden="true">＋</span></button><button type="button" class="team-slot-remove" data-clear-draft-slot="0" aria-label="Remove character from slot 1" title="Remove character" hidden><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M6 6 18 18M18 6 6 18"/></svg></button></div>
+                  </div>
+                  <div class="team-position" data-team-position="1" data-team-group="draft">
+                    <div class="team-position-head"><span>Slot 2</span><button type="button" class="team-move-handle" aria-label="Move slot 2" title="Drag to swap, or select two slots" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="5" r="1.7"/><circle cx="15" cy="5" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="19" r="1.7"/><circle cx="15" cy="19" r="1.7"/></svg></button></div><input type="hidden" id="planner-slot-1" value=""><div class="team-slot-control"><button type="button" class="team-pick-slot" data-team-slot="1"><span class="team-pick-slot-portrait" id="team-slot-img-1">✦</span><span id="team-slot-label-1">Choose character</span><span class="team-pick-slot-plus" aria-hidden="true">＋</span></button><button type="button" class="team-slot-remove" data-clear-draft-slot="1" aria-label="Remove character from slot 2" title="Remove character" hidden><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M6 6 18 18M18 6 6 18"/></svg></button></div>
+                  </div>
+                  <div class="team-position" data-team-position="2" data-team-group="draft">
+                    <div class="team-position-head"><span>Slot 3</span><button type="button" class="team-move-handle" aria-label="Move slot 3" title="Drag to swap, or select two slots" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="5" r="1.7"/><circle cx="15" cy="5" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="19" r="1.7"/><circle cx="15" cy="19" r="1.7"/></svg></button></div><input type="hidden" id="planner-slot-2" value=""><div class="team-slot-control"><button type="button" class="team-pick-slot" data-team-slot="2"><span class="team-pick-slot-portrait" id="team-slot-img-2">✦</span><span id="team-slot-label-2">Choose character</span><span class="team-pick-slot-plus" aria-hidden="true">＋</span></button><button type="button" class="team-slot-remove" data-clear-draft-slot="2" aria-label="Remove character from slot 3" title="Remove character" hidden><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M6 6 18 18M18 6 6 18"/></svg></button></div>
+                  </div>
+                  <div class="team-position" data-team-position="3" data-team-group="draft">
+                    <div class="team-position-head"><span>Slot 4</span><button type="button" class="team-move-handle" aria-label="Move slot 4" title="Drag to swap, or select two slots" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="5" r="1.7"/><circle cx="15" cy="5" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="19" r="1.7"/><circle cx="15" cy="19" r="1.7"/></svg></button></div><input type="hidden" id="planner-slot-3" value=""><div class="team-slot-control"><button type="button" class="team-pick-slot" data-team-slot="3"><span class="team-pick-slot-portrait" id="team-slot-img-3">✦</span><span id="team-slot-label-3">Choose character</span><span class="team-pick-slot-plus" aria-hidden="true">＋</span></button><button type="button" class="team-slot-remove" data-clear-draft-slot="3" aria-label="Remove character from slot 4" title="Remove character" hidden><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M6 6 18 18M18 6 6 18"/></svg></button></div>
+                  </div>
+                </div>
+                <div class="team-edit-actions"><button class="btn btn-outline" type="button" id="planner-team-cancel" hidden>Cancel</button><button class="btn btn-primary" type="submit" id="planner-team-save">Save team</button></div>
+              </form>
+              <p class="planner-panel-foot">Team suggestions are illustrative and are not ownership-verified by your UID.</p>
+            </div>
+          </div>
+          <div class="section-header team-suggestions-header">
+            <div>
+              <h2 class="section-title">Suggested team templates</h2>
+              <p class="section-sub" id="planner-suggestions-description">Teams you can form using characters in your build roster.</p>
+            </div><button type="button" class="btn btn-outline team-suggestions-toggle" id="planner-suggestions-toggle" aria-haspopup="dialog" aria-controls="other-teams-dialog">Show other teams</button></div>
+          <div class="team-cards" id="planner-suggestions" aria-live="polite">
+          </div>
+        </section>
+
+        <section id="page-roadmap" class="page active" aria-label="Paimon's Journey Book — 3–4 week character farming planner">
+          <div class="coach-heading">
+            <div><span class="eyebrow">PAIMON KNOWS BEST! ✦</span><h1 class="page-title">Paimon's Journey Book <span class="coach-spark">✦</span></h1>
+              <p class="lead">Pick your characters, see what to farm and when, then head into Teyvat.</p>
+            </div>
+            <div class="coach-heading-right">
+              <div class="coach-heading-actions"><span class="coach-week-pill" id="coach-week-pill">Week 1 of 4</span></div>
+              <div class="coach-server-pill">🌏 <span id="coach-server">Asia</span> · 4 AM reset</div>
+            </div>
+          </div>
+
+          <div id="coach-not-setup" class="coach-onboarding">
+            <div class="coach-setup-intro">
+              <div class="coach-setup-crest">✧</div>
+              <h2>Pick 2–3 characters. We'll handle the schedule.</h2>
+            </div>
+            <form id="coach-setup-form">
+              <div class="picker-shell" aria-label="Choose characters for the farming plan">
+                <div class="picker-header journey-mode-heading"><strong>Choose 2–3 characters</strong><div class="journey-mode-switch" role="group" aria-label="Farming plan type"><button type="button" data-journey-mode="characters" aria-pressed="true">Characters</button><button type="button" data-journey-mode="weapons" aria-pressed="false">Weapons</button></div>
+                </div>
+                <div id="coach-pick-selected" class="picker-selection" aria-live="polite">
+                </div>
+                <p id="coach-overlap-note" class="coach-overlap-note" role="status" aria-live="polite">Paimon won't allow overlapping talent-book days (Mon/Thu, Tue/Fri, Wed/Sat). Sunday is a free catch-up day for everyone.</p>
+                <label class="picker-search"><svg aria-hidden="true"><use href="#search"></use></svg><input id="coach-pick-search" type="search" placeholder="Search characters by name..." autocomplete="off" aria-label="Search Genshin characters"/></label>
+                <div class="picker-elements" id="coach-pick-filters" aria-label="Filter characters by element">
+                </div>
+                <div id="coach-pick-grid" class="picker-grid" aria-label="Genshin character portraits">
+                </div>
+                <div class="picker-foot"><span id="coach-pick-results">Browse the roster · max 3 characters</span></div>
+              </div>
+              <div class="coach-formrow">
+                <div class="field"><label class="input-label" for="coach-setup-weeks">How long?</label><select class="select" id="coach-setup-weeks">
+                    <option value="3">3 weeks / 21 days</option><option value="4" selected>4 weeks / 28 days</option>
+                  </select>
+                </div>
+                <div class="field"><label class="input-label" for="coach-setup-budget">Daily farming Resin budget</label><select class="select" id="coach-setup-budget">
+                    <option value="80">80 Resin · relaxed</option><option value="120">120 Resin</option><option value="160" selected>160 Resin · balanced</option><option value="200">200 Resin · focused</option>
+                  </select>
+                </div>
+              </div>
+              <p class="coach-fineprint">Your chosen characters appear above. After setup, edit talent levels in Build Planner and record owned materials in Inventory Board. Change your plan in Journey Book Settings. No HoYoverse login needed.</p>
+              <div class="coach-setup-actions"><button class="btn btn-mint" type="submit">✦ Create my farming plan</button></div>
+            </form>
+            <form id="weapon-setup-form" hidden>
+              <div class="picker-shell">
+                <div class="picker-header journey-mode-heading"><strong>Choose 1–3 weapons</strong><div class="journey-mode-switch" role="group" aria-label="Farming plan type"><button type="button" data-journey-mode="characters" aria-pressed="true">Characters</button><button type="button" data-journey-mode="weapons" aria-pressed="false">Weapons</button></div>
+                </div>
+                <div id="weapon-pick-selected" class="picker-selection" aria-live="polite">
+                </div>
+                <label class="picker-search"><svg aria-hidden="true"><use href="#search"></use></svg><input type="search" id="weapon-pick-search" placeholder="Search weapons..." aria-label="Search weapons" autocomplete="off"></label>
+                <div id="weapon-pick-filters" class="picker-elements" role="group" aria-label="Filter weapon rarity">
+                </div>
+                <div id="weapon-pick-grid" class="picker-grid" aria-label="Weapon selection">
+                </div>
+                <div class="picker-foot"><span id="weapon-pick-results" role="status"></span><button type="button" class="inline-link" id="weapon-pick-retry" hidden>Retry catalog</button></div>
+              </div>
+              <div class="coach-formrow">
+                <div class="field"><label class="input-label" for="weapon-setup-weeks">How long?</label><select id="weapon-setup-weeks" class="select">
+                    <option value="3">3 weeks / 21 days</option><option value="4" selected>4 weeks / 28 days</option>
+                  </select>
+                </div>
+                <div class="field"><label class="input-label" for="weapon-setup-budget">Daily farming Resin budget</label><select class="select" id="weapon-setup-budget">
+                    <option value="80">80 Resin · relaxed</option><option value="120">120 Resin</option><option value="160" selected>160 Resin · balanced</option><option value="200">200 Resin · focused</option>
+                  </select>
+                </div>
+              </div>
+              <div class="coach-setup-actions"><button class="btn btn-mint" type="submit" id="weapon-start" disabled>✦ Create my weapon plan</button></div>
+            </form>
+          </div>
+
+          <div id="coach-active" hidden>
+            <div class="coach-section-card coach-combined-card">
+              <div class="coach-combined-grid">
+                <div class="coach-left-panel">
+                  <div class="coach-focus-title">
+                    <div class="journey-mode-heading"><span class="coach-overline">TODAY'S FARMING PRIORITY</span><div class="journey-mode-switch" role="group" aria-label="Farming plan type"><button type="button" data-journey-mode="characters" aria-pressed="true">Characters</button><button type="button" data-journey-mode="weapons" aria-pressed="false">Weapons</button></div>
+                    </div>
+                    <h2 id="coach-priority-title">Who should we farm today?</h2>
+                    <div class="coach-people" id="coach-selected-people" aria-label="Characters in your farming plan">
+                    </div>
+                  </div>
+                  <div id="coach-today">
+                  </div>
+                  <div id="coach-done-today" class="coach-done-today" aria-live="polite" aria-label="Completed today; available to undo">
+                  </div>
+                  <div id="coach-progress-block" class="coach-status-progress coach-progress-block" aria-label="Farming goal progress">
+                    <div class="coach-inline-progress"><span>Material progress</span><strong id="coach-progress-percent">0%</strong></div>
+                    <div class="coach-progress-track"><span id="coach-progress-fill"></span></div>
+                    <small id="coach-goal-count">0 targets remaining</small>
+                  </div>
+                </div>
+
+                <div class="coach-right-panel">
+                  <div class="coach-calendar-panel-head">
+                    <div><span class="coach-overline">YOUR FARMING CALENDAR</span><h2 class="coach-calendar-month" id="coach-calendar-month">November 2026</h2>
+                    </div><span class="section-badge" id="coach-week-range">4-week plan</span></div>
+                  <div class="coach-calendar" id="coach-calendar">
+                  </div>
+                  <div id="calendar-character-key" aria-label="Scheduled characters and talent books">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div hidden aria-hidden="true">
+              <div id="coach-next">
+              </div>
+              <div id="coach-impact">
+              </div>
+            </div>
+          </div>
+          <dialog id="plan-edit-dialog" class="plan-edit-dialog" aria-labelledby="plan-edit-title">
+            <header class="plan-edit-head"><h2 id="plan-edit-title">Change character</h2><div class="plan-edit-switch" role="group" aria-label="Choose plan to edit"><button type="button" data-plan-edit-mode="characters" aria-pressed="true">Characters</button><button type="button" data-plan-edit-mode="weapons" aria-pressed="false">Weapons</button></div><button type="button" id="plan-edit-close" class="plan-edit-close" aria-label="Close changes">×</button></header>
+            <div id="plan-edit-picker" class="plan-edit-body"><div id="plan-edit-characters" class="plan-edit-pane"></div><div id="plan-edit-weapons" class="plan-edit-pane" hidden></div><div id="plan-edit-empty" class="plan-edit-empty" hidden></div></div>
+            <footer class="plan-edit-foot"><p id="plan-edit-status" role="status" aria-live="polite"></p><div class="plan-edit-actions"><button type="button" class="btn btn-outline" id="plan-edit-cancel">Cancel</button><button type="button" class="btn btn-mint" id="plan-edit-save">Save changes</button></div></footer>
+          </dialog>
+        </section>
+
+        <section id="page-farming" class="page" aria-label="Inventory Board">
+          <span class="eyebrow">BUILD THE TEAM YOU LOVE</span><h1 class="page-title">Inventory Board</h1>
+          <p class="lead">Pick materials by their in-game names and icons, set the amounts you own and need, and follow your farming progress. No material-name typing required.</p>
+          <div class="farm-layout">
+            <div class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Your material goals</h3>
+                  <p id="farm-count-label">No projects yet. Add one to get started.</p>
+                  <p class="help">Included in Journey Book material progress when tracking is enabled.</p>
+                </div>
+                <div class="farm-filter"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="today">Farm today</button><button class="filter-btn" data-filter="pending">In progress</button><button type="button" class="btn btn-outline" id="farm-quick-remove" aria-haspopup="dialog" aria-controls="farm-remove-dialog"><svg aria-hidden="true"><use href="#trash"></use></svg>Quick remove</button></div>
+              </div><button type="button" class="inline-link" id="farm-restore-auto" hidden>Restore removed automatic goals</button><div id="farm-owner-nav" class="farm-owner-nav" hidden>
+                <div class="farm-owner-info"><span id="farm-owner-portrait" class="roster-face" hidden></span><div class="farm-owner-copy"><strong id="farm-owner-name"></strong><small id="farm-owner-summary" aria-live="polite"></small></div>
+                </div>
+                <div class="farm-owner-controls" role="group" aria-label="Material goals pagination"><button type="button" class="saved-team-arrow" id="farm-owner-prev" aria-label="Previous character or weapon" aria-controls="farm-list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><select id="farm-owner-select" class="select" aria-label="Choose character or weapon material goals" aria-controls="farm-list">
+                  </select><button type="button" class="saved-team-arrow" id="farm-owner-next" aria-label="Next character or weapon" aria-controls="farm-list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>
+              </div>
+              <div id="farm-list">
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3>New material target</h3>
+                  <p>Choose an item from the catalog and update as you farm.</p>
+                </div>
+              </div>
+              <form id="farm-form">
+                <div class="field"><label class="input-label" for="farm-character">Character or weapon</label><input class="input" required maxlength="65" id="farm-character" placeholder="e.g. Nahida"></div>
+                <div class="field"><label class="input-label" id="farm-material-label">Material</label><button type="button" class="material-select-button" id="farm-material-button" data-open-material-picker="farm" aria-labelledby="farm-material-label farm-material-preview-title" aria-haspopup="dialog"><span class="material-icon-art" id="farm-material-preview-icon" aria-hidden="true"><span class="material-icon-fallback">✧</span></span><span class="material-choice-copy"><strong class="material-choice-title" id="farm-material-preview-title">Choose a material</strong><small class="material-choice-sub" id="farm-material-preview-sub">Browse items by official game name and icon</small></span><span class="material-choice-action">Select</span></button><input id="farm-material" type="hidden"><p class="material-picked-hint" id="farm-material-hint">Choose the exact item first, then enter how many you own and need.</p>
+                  <div id="farm-book-warning" role="status" aria-live="polite" hidden><span id="farm-book-warning-text"></span> <button type="button" id="farm-book-use-correct" hidden></button></div>
+                </div>
+                <div class="field-grid">
+                  <div class="field"><label class="input-label" for="farm-owned">Currently owned</label><input class="input" type="number" required value="0" min="0" max="999999" step="1" id="farm-owned"></div>
+                  <div class="field"><label class="input-label" for="farm-target">Target amount</label><input class="input" type="number" required value="20" min="1" max="999999" step="1" id="farm-target"></div>
+                </div>
+                <div class="field"><label class="input-label" for="farm-days">Usual farm days (optional)</label><select id="farm-days" class="select">
+                    <option value="any">Any day</option><option value="mon">Monday / Thursday / Sunday</option><option value="tue">Tuesday / Friday / Sunday</option><option value="wed">Wednesday / Saturday / Sunday</option>
+                  </select>
+                  <p class="help">These are common talent/weapon Domain schedules. Confirm the domain you need in-game.</p>
+                </div><button class="btn btn-primary" style="width:100%" type="submit">Add to inventory board <svg><use href="#arrow"></use></svg></button></form>
+            </div>
+          </div>
+        </section>
+
+        <section id="page-about" class="page" aria-label="About Teyvat Companion">
+          <span class="eyebrow">ABOUT THIS PROJECT</span>
+          <h1 class="page-title">About Teyvat Companion</h1>
+          <p class="lead">A free, unofficial companion for planning your next adventure in Genshin Impact.</p>
+          <div class="about-content">
+            <h2>Made for Travelers</h2><p>Teyvat Companion helps you decide what to farm, organize character and weapon upgrades, and keep track of your progress without needing to sign into your game account.</p>
+            <h2>Your adventure tools</h2><p><strong>Paimon's Journey Book</strong> — Plan character and weapon farming around domain rotations and your selected server.<br><strong>Material Schedule</strong> — Browse daily materials and see which characters or weapons need them.<br><strong>Inventory Board</strong> — Track saved materials and targets.<br><strong>Build Planner</strong> — Organize your roster, talent goals, and teams.</p>
+            <h2>Developer</h2><p>Created by Euiofy as an independent personal project.</p>
+            <a class="about-github" href="https://github.com/Euiofy" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1 1.72 2.64 1.22 3.29.93.1-.73.4-1.22.72-1.5-2.5-.29-5.14-1.26-5.14-5.56 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.63 0c2.15-1.45 3.1-1.15 3.1-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.32-2.64 5.27-5.16 5.55.41.36.77 1.04.77 2.1v3.08c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg><span><strong>Euiofy</strong><small>GitHub profile</small></span><span aria-hidden="true">↗</span></a>
+            <h2>Privacy and reminders</h2><p>Plans, inventory, and preferences are stored on your device. Export a backup in Settings before changing devices or browsers. Browser notifications require permission; optional phone reminders use ntfy. No game credentials are required.</p>
+            <h2>Credits</h2><p>Game data and artwork are based on Genshin Impact and public resources including Enka.Network, Yatta, Genshin Builds, Paimon.moe and community wikis. All game assets belong to their respective owners.</p>
+            <h2>Unofficial fan project</h2><p>Not affiliated with or endorsed by HoYoverse. Verify domain rewards in-game after updates.</p>
+            <button type="button" class="btn btn-secondary" data-go="roadmap">← Back to Paimon's Journey Book</button>
+          </div>
+        </section>
+
+        <footer class="about-foot">Made for Travelers <span id="about-footer-separator" style="opacity:.5">·</span> <button type="button" class="about-footer-link" data-go="about" aria-label="About Teyvat Companion">About</button> <span id="bottom-server"></span></footer>
+      </main>
+    </div>
+
+    <nav id="material-floating-days" aria-label="Material Schedule: quick weekday selection" hidden>
+      <span class="material-float-label" aria-hidden="true">DAYS</span>
+      <div id="material-floating-buttons" role="group" aria-label="Select farming day" style="display:contents">
+      </div>
+    </nav>
+
+    <nav class="android-bottom-nav" aria-label="Main navigation (mobile)">
+      <button type="button" class="active" data-go="roadmap" aria-current="page" aria-label="Paimon's Journey Book"><svg aria-hidden="true"><use href="#nav-journey"></use></svg><span class="mobile-nav-label">Journey<br>Book</span></button>
+      <button type="button" data-go="materials" aria-label="Material Schedule"><svg aria-hidden="true"><use href="#nav-materials"></use></svg><span class="mobile-nav-label">Material<br>Schedule</span></button>
+      <button type="button" data-go="farming" aria-label="Inventory Board"><svg aria-hidden="true"><use href="#bag"></use></svg><span class="mobile-nav-label">Inventory<br>Board</span></button>
+      <button type="button" data-go="planner" aria-label="Build Planner"><svg aria-hidden="true"><use href="#nav-planner"></use></svg><span class="mobile-nav-label">Build<br>Planner</span></button>
+      <button type="button" data-go="settings" aria-label="Settings"><svg aria-hidden="true"><use href="#nav-settings"></use></svg><span class="mobile-nav-label">Settings</span></button>
+    </nav>
+
+    <dialog id="farm-remove-dialog" class="roster-stats-dialog roster-remove-dialog" aria-labelledby="farm-remove-title">
+      <div class="roster-stats-head">
+        <div><span class="coach-overline">FARMING BOARD</span><h2 id="farm-remove-title">Quick remove material goals</h2>
+        </div><button type="button" class="roster-stats-close" id="farm-remove-close" aria-label="Close quick remove"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="roster-remove-controls">
+        <select id="farm-remove-owner" class="select" aria-label="Filter by character or weapon">
+        </select><input id="farm-remove-search" type="search" class="input" placeholder="Search materials or characters…" aria-label="Search material goals" autocomplete="off"><div class="roster-remove-tools"><button type="button" class="btn btn-outline" id="farm-remove-all">Select all shown</button><button type="button" class="btn btn-outline" id="farm-remove-clear">Clear selection</button><span id="farm-remove-count" role="status" aria-live="polite">0 selected</span></div>
+      </div>
+      <div class="roster-stats-body roster-remove-body" id="farm-remove-body">
+        <div id="farm-remove-list" aria-label="Select material goals to remove">
+        </div>
+      </div>
+      <div class="roster-remove-foot">
+        <p id="farm-remove-note">Only selected material goals are removed. Your roster, talent levels and saved teams stay intact.</p>
+        <div class="actions-row"><button type="button" class="btn btn-outline" id="farm-remove-cancel">Cancel</button><button type="button" class="btn btn-danger" id="farm-remove-confirm" disabled>Remove selected</button></div>
+      </div>
+    </dialog>
+
+    <dialog id="team-remove-dialog" class="roster-stats-dialog roster-remove-dialog" aria-labelledby="team-remove-title">
+      <div class="roster-stats-head">
+        <div><span class="coach-overline">SAVED TEAM LINEUPS</span><h2 id="team-remove-title">Quick remove teams</h2>
+        </div><button type="button" class="roster-stats-close" id="team-remove-close" aria-label="Close quick remove"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="roster-remove-controls"><input id="team-remove-search" type="search" class="input" placeholder="Search team names or characters…" aria-label="Search saved teams" autocomplete="off"><div class="roster-remove-tools"><button type="button" class="btn btn-outline" id="team-remove-all">Select all</button><button type="button" class="btn btn-outline" id="team-remove-clear">Clear selection</button><span id="team-remove-count" role="status" aria-live="polite">0 selected</span></div>
+      </div>
+      <div class="roster-stats-body roster-remove-body" id="team-remove-body">
+        <div id="team-remove-list" aria-label="Select saved teams to remove">
+        </div>
+      </div>
+      <div class="roster-remove-foot">
+        <p id="team-remove-note">Only saved lineups are removed. Your build roster, farming plan and materials stay intact.</p>
+        <div class="actions-row"><button class="btn btn-outline" type="button" id="team-remove-cancel">Cancel</button><button type="button" class="btn btn-danger" id="team-remove-confirm" disabled>Remove selected</button></div>
+      </div>
+    </dialog>
+
+    <dialog id="roster-remove-dialog" class="roster-stats-dialog roster-remove-dialog" aria-labelledby="roster-remove-title">
+      <div class="roster-stats-head">
+        <div><span class="coach-overline">BUILD ROSTER</span><h2 id="roster-remove-title">Quick remove</h2>
+        </div><button type="button" class="roster-stats-close" id="roster-remove-close" aria-label="Close quick remove"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="roster-remove-controls"><input id="roster-remove-search" type="search" class="input" placeholder="Search your roster..." aria-label="Search roster to remove" autocomplete="off"><div class="roster-remove-tools"><button type="button" class="btn btn-outline" id="roster-remove-all">Select all</button><button type="button" class="btn btn-outline" id="roster-remove-clear">Clear selection</button><span id="roster-remove-count" role="status" aria-live="polite">0 selected</span></div>
+      </div>
+      <div class="roster-stats-body roster-remove-body">
+        <div id="roster-remove-grid" class="roster-remove-grid" aria-label="Select characters to remove">
+        </div>
+      </div>
+      <div class="roster-remove-foot">
+        <p id="roster-remove-note">Only removes characters and their talent settings from the build roster. Saved teams and manual material goals are kept.</p>
+        <div class="actions-row"><button class="btn btn-outline" type="button" id="roster-remove-cancel">Cancel</button><button type="button" class="btn btn-danger" id="roster-remove-confirm" disabled>Remove selected</button></div>
+      </div>
+    </dialog>
+
+    <dialog id="roster-stats-dialog" class="roster-stats-dialog" aria-labelledby="roster-stats-title">
+      <div class="roster-stats-head">
+        <h2 id="roster-stats-title">Talent settings</h2><button type="button" id="roster-stats-close" class="roster-stats-close" aria-label="Close character settings" autofocus><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="roster-stats-body" id="roster-stats-body">
+      </div>
+      <p class="roster-stats-note">Changes are saved automatically and update your farming requirements.</p>
+    </dialog>
+
+    <dialog id="talent-users-dialog" class="talent-users-dialog" aria-labelledby="talent-users-title" aria-describedby="talent-users-description">
+      <div class="talent-users-header">
+        <div><span class="coach-overline">CHARACTERS USING THIS BOOK</span><h2 id="talent-users-title">Talent Books</h2>
+          <p id="talent-users-description">See the characters who need this talent-book series.</p>
+        </div><button type="button" id="talent-users-close" class="talent-users-close" aria-label="Close character list"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="talent-users-content">
+        <div id="talent-users-grid" class="talent-users-grid">
+        </div>
+        <p class="talent-users-note" id="talent-users-note">Traveler talent-book requirements can vary with element, talent, and level.</p>
+      </div>
+    </dialog>
+    <dialog id="weapon-users-dialog" class="talent-users-dialog" aria-labelledby="weapon-users-title" aria-describedby="weapon-users-description">
+      <div class="talent-users-header">
+        <div><span class="coach-overline">WEAPONS USING THIS MATERIAL</span><h2 id="weapon-users-title">Weapon ascension</h2>
+          <p id="weapon-users-description">
+          </p>
+        </div><button type="button" id="weapon-users-close" class="talent-users-close" aria-label="Close weapon list"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="talent-users-content">
+        <div id="weapon-users-grid" class="talent-users-grid">
+        </div>
+        <p class="talent-users-note" id="weapon-users-note" hidden>
+        </p>
+      </div>
+    </dialog>
+
+    <dialog id="material-picker-dialog" class="material-picker-dialog" aria-labelledby="material-picker-heading">
+      <div class="material-picker-top">
+        <div><small>GENSHIN MATERIAL CATALOG</small><h2 id="material-picker-heading">Choose your material</h2>
+        </div><button class="material-picker-close" type="button" id="material-picker-close" aria-label="Close material selection"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="material-picker-controls"><input id="material-picker-search" class="input" type="search" placeholder="Search by material name, series, or region…" aria-label="Search Genshin materials"><div id="material-picker-tabs" class="material-picker-tabs" role="group" aria-label="Material categories">
+        </div>
+      </div>
+      <div class="material-picker-list">
+        <div id="material-picker-grid" class="material-picker-grid" aria-live="polite">
+        </div>
+      </div>
+      <div class="material-picker-count"><span id="material-picker-count">Choose an item to continue.</span><span>Item artwork needs an internet connection.</span></div>
+    </dialog>
+
+    <dialog id="coach-day-dialog" class="coach-day-dialog" aria-labelledby="coach-day-dialog-title" aria-describedby="coach-day-dialog-subtitle">
+      <div class="coach-day-dialog-header">
+        <div><span class="coach-overline">PAIMON'S FARMING SCHEDULE</span><h2 id="coach-day-dialog-title">Farming details</h2>
+          <p id="coach-day-dialog-subtitle">Available farming materials for this day</p>
+        </div>
+      </div>
+      <div class="coach-day-dialog-content" id="coach-day-dialog-content">
+      </div>
+      <div class="coach-day-dialog-footer"><button type="button" class="btn btn-outline" id="coach-day-dialog-done">Close</button></div>
+    </dialog>
+
+    <dialog id="other-teams-dialog" aria-labelledby="other-teams-title">
+      <div class="saved-team-picker-head">
+        <div>
+          <h2 id="other-teams-title">Other team templates</h2>
+          <p>Explore possible lineups with characters missing from your build roster.</p>
+        </div><button type="button" id="other-teams-close" class="talent-users-close" aria-label="Close other team templates"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="saved-team-picker-search"><input class="input" id="other-teams-search" type="search" placeholder="Search teams or characters…" aria-label="Search other team templates" autocomplete="off"></div>
+      <div id="other-teams-list" aria-live="polite">
+      </div>
+      <div class="saved-team-picker-foot" id="other-teams-count">
+      </div>
+    </dialog>
+    <dialog id="saved-team-picker" aria-labelledby="saved-team-picker-title">
+      <div class="saved-team-picker-head">
+        <div>
+          <h2 id="saved-team-picker-title">All saved teams</h2>
+          <p>Choose a lineup to view it.</p>
+        </div><button type="button" id="saved-team-picker-close" class="talent-users-close" aria-label="Close saved teams"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="saved-team-picker-search"><input type="search" class="input" id="saved-team-search" placeholder="Search team names or characters…" aria-label="Search saved teams" autocomplete="off"></div>
+      <div id="saved-team-picker-list" class="saved-team-picker-list">
+      </div>
+      <div id="saved-team-picker-count" class="saved-team-picker-foot" role="status" aria-live="polite">
+      </div>
+    </dialog>
+
+    <dialog id="team-character-dialog" class="team-pick-modal" aria-label="Choose a Genshin team member">
+      <div class="team-modal-head">
+        <div><span class="eyebrow">TEAM LINEUP</span><h2>Choose a character</h2>
+        </div><button type="button" id="team-picker-close" aria-label="Close character selector" class="team-close"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+      <div class="picker-header"><span id="team-modal-intro" class="picker-hint">Pick a character for this team slot</span></div>
+      <label class="picker-search"><span aria-hidden="true">⌕</span><input type="search" id="team-pick-search" aria-label="Search team character" placeholder="Search characters..." autocomplete="off"></label>
+      <div class="picker-elements" id="team-pick-filters" aria-label="Filter team characters by element">
+      </div>
+      <div class="picker-grid" id="team-pick-grid" aria-label="Select team character">
+      </div>
+      <div class="picker-foot"><span id="team-pick-results">Select a character</span></div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+    </div>
+    <script src="./data/characters.js">
+    </script>
+    <script src="./data/teams.js">
+    </script>
+    <script src="./data/materials.js">
+    </script>
+    <script src="./data/weapons.js">
+    </script>
+    <script src="./js/core/utils.js">
+    </script>
+    <script src="./js/core/server.js">
+    </script>
+    <script src="./js/catalog/characters.js">
+    </script>
+    <script src="./js/features/character-picker.js">
+    </script>
+    <script src="./js/features/planner.js">
+    </script>
+    <script src="./js/core/storage.js">
+    </script>
+    <script src="./js/core/navigation.js">
+    </script>
+    <script src="./js/catalog/materials.js">
+    </script>
+    <script src="./js/features/material-picker.js">
+    </script>
+    <script src="./js/features/inventory.js">
+    </script>
+    <script src="./js/features/materials.js">
+    </script>
+    <script src="./js/features/notifications.js">
+    </script>
+    <script src="./js/features/teams.js">
+    </script>
+    <script src="./js/features/journey.js">
+    </script>
+    <script src="./js/features/settings.js">
+    </script>
+    <script src="./js/features/weapon-journey.js">
+    </script>
+    <script src="./js/features/plan-editor.js">
+    </script>
+    <script src="./js/app.js">
+    </script>
+    <script src="./js/select-menu.js">
+    </script>
+  </body>
+</html>

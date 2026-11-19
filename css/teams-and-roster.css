@@ -1,0 +1,1537 @@
+/* Team lineup editing: touch-safe drag handles, ordered portrait tiles. */
+
+#planner-team-slots {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+}
+
+.team-position {
+  min-width: 0;
+  border: 1px solid #65819a48;
+  border-radius: 11px;
+  background: #12253a;
+  padding: 7px;
+  transition: border-color .15s,background .15s;
+}
+
+.team-position-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  color: #9fb6c5;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.team-move-handle {
+  border: 0;
+  background: transparent;
+  color: #aac4cf;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  flex: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.team-move-handle:hover,.team-move-handle:focus-visible {
+  background: #ffffff12;
+  color: #e4ffef;
+  outline-offset: 2px;
+}
+
+.team-move-handle svg {
+  width: 17px;
+  height: 17px;
+  pointer-events: none;
+}
+
+.team-position .team-pick-slot {
+  margin: 4px 0 0;
+  min-height: 56px;
+  padding: 7px;
+  gap: 7px;
+  min-width: 0;
+  border-color: #536f8055;
+  align-items: center;
+}
+
+.team-position .team-pick-slot>span:nth-child(2) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+
+.team-position .team-pick-slot-plus {
+  font-size: 15px;
+  flex: none;
+}
+
+.team-position img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.team-position .team-pick-slot-portrait {
+  width: 36px;
+  height: 36px;
+}
+
+#planner-teams {
+  grid-template-columns: 1fr;
+}
+
+.team-saved-positions {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.team-saved-positions .team-position .team-pick-slot {
+  font-size: 11px;
+}
+
+.team-position.is-drag-source {
+  opacity: .48;
+  border-style: dashed;
+}
+
+.team-position.is-drop-target,.team-position.is-move-selected {
+  border-color: var(--mint);
+  background: #214b49;
+  box-shadow: 0 0 0 1px #90dec555;
+}
+
+.team-drag-ghost {
+  position: fixed;
+  z-index: 180;
+  pointer-events: none;
+  padding: 9px 13px;
+  border: 1px solid #90dec5;
+  background: #1d414b;
+  color: #e8fff6;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px #0008;
+  font-size: 12px;
+  font-weight: 700;
+  max-width: 180px;
+  overflow-wrap: anywhere;
+  transform: translate(10px,10px);
+}
+
+.team-edit-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.team-edit-actions .btn-primary {
+  flex: 1;
+}
+
+.team-edit-actions .btn-outline {
+  flex: none;
+}
+
+#planner-team-editor {
+  scroll-margin-top: 18px;
+  min-width: 0;
+}
+
+@media(max-width:420px) {
+  .team-position {
+    padding: 5px;
+  }
+  .team-position .team-pick-slot {
+    padding: 5px;
+    gap: 5px;
+  }
+  .team-position .team-pick-slot-portrait {
+    width: 30px;
+    height: 30px;
+  }
+  .team-position .team-pick-slot-plus {
+    display: none;
+  }
+  .team-move-handle {
+    width: 35px;
+    height: 36px;
+  }
+  .team-position .team-pick-slot {
+    font-size: 11px;
+  }
+}
+
+/* Team picker: match other dialogs' centered X; visually disable occupied slots. */
+
+#team-character-dialog .team-close {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  line-height: 0;
+  box-sizing: border-box;
+  border-radius: 9px;
+  background: #2a4357;
+  border-color: #6d879877;
+  color: #e1eef0;
+}
+
+#team-character-dialog .team-close svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+#team-character-dialog .team-close:hover,#team-character-dialog .team-close:focus-visible {
+  background: #376375;
+  border-color: #a7d8c8;
+}
+
+#team-pick-grid .picker-face.is-team-unavailable {
+  opacity: .48;
+  filter: grayscale(1);
+  cursor: not-allowed;
+  background: #192a3c;
+  border-color: #53667b77;
+  box-shadow: none;
+  transform: none;
+}
+
+#team-pick-grid .team-occupied-label {
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.3;
+  color: #d5dce3;
+  text-align: center;
+  margin-top: -3px;
+}
+
+/* Browse saved teams one at a time, without extending the page for each team. */
+
+#planner-teams {
+  grid-template-columns: minmax(0,1fr);
+  min-width: 0;
+}
+
+#planner-teams .team-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#planner-teams .team-title small {
+  flex: none;
+}
+
+.saved-team-head {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.saved-team-head>div:first-child {
+  flex: 1 1 190px;
+  min-width: 0;
+}
+
+.saved-team-nav {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+}
+
+.saved-team-arrow {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #6d879877;
+  background: #263d53;
+  color: #e1eef0;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.saved-team-arrow svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.saved-team-arrow:not(:disabled):hover,.saved-team-arrow:focus-visible {
+  background: #376375;
+  border-color: #a7d8c8;
+  outline-offset: 2px;
+}
+
+.saved-team-count {
+  font-size: 12px;
+  font-weight: 650;
+  color: #b6c9d5;
+  font-variant-numeric: tabular-nums;
+  min-width: 43px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media(max-width:480px) {
+  .saved-team-head>div:first-child {
+    flex-basis: 100%;
+  }
+  .saved-team-nav {
+    margin-left: auto;
+  }
+  .saved-team-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Same-size saved team card in view and edit modes. Only the name changes to an input. */
+
+#planner-teams .team-title {
+  align-items: center;
+  min-height: 32px;
+  height: 32px;
+  gap: 8px;
+}
+
+#planner-teams .team-title strong {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#planner-teams #saved-team-name {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 32px;
+  padding: 4px 8px;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 700;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+#planner-teams .team-card.is-editing {
+  border-color: #90dec588;
+}
+
+#planner-teams .team-saved-positions .team-pick-slot {
+  height: 56px;
+  min-height: 56px;
+}
+
+#planner-teams .team-saved-positions .team-pick-slot>span:nth-child(2) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+#planner-teams .team-foot {
+  min-height: 34px;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Saved team quick jump: browse every lineup without growing the saved card. */
+
+.saved-team-jump {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 36px;
+  padding: 0 8px;
+  background: #1a3045;
+  border: 1px solid #6d879877;
+  border-radius: 9px;
+  color: #b6c9d5;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.saved-team-jump:not(:disabled):hover,.saved-team-jump:focus-visible {
+  background: #376375;
+  border-color: #a7d8c8;
+  outline-offset: 2px;
+}
+
+.saved-team-jump .saved-team-count {
+  min-width: 0;
+}
+
+#saved-team-picker {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(540px,calc(100% - 24px));
+  max-height: min(84vh,660px);
+  max-height: min(84dvh,660px);
+  padding: 0;
+  border: 1px solid #799eaa7d;
+  border-radius: 17px;
+  background: linear-gradient(150deg,#192d43,#0e1d30);
+  color: var(--text);
+  box-shadow: 0 24px 90px #000b;
+  overflow: hidden;
+}
+
+#saved-team-picker::backdrop {
+  background: #020a18bc;
+  backdrop-filter: blur(5px);
+}
+
+#saved-team-picker[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.saved-team-picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px 13px;
+  flex: none;
+}
+
+.saved-team-picker-head h2 {
+  font: normal 25px/1.25 Georgia,serif;
+  color: #f4e6c7;
+  margin: 0 0 4px;
+}
+
+.saved-team-picker-head p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--sub);
+}
+
+.saved-team-picker-search {
+  padding: 0 20px 13px;
+  flex: none;
+}
+
+.saved-team-picker-list {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 3px 20px 16px;
+  display: grid;
+  gap: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #526e82 transparent;
+}
+
+.saved-team-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  background: #14293f;
+  border: 1px solid #718b9c50;
+  border-radius: 11px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.saved-team-choice:hover,.saved-team-choice:focus-visible {
+  background: #224050;
+  border-color: var(--mint);
+  outline-offset: 1px;
+}
+
+.saved-team-choice.is-current {
+  background: #193b42;
+  border-color: #89dac29c;
+}
+
+.saved-team-choice-index {
+  flex: 0 0 25px;
+  text-align: center;
+  color: #91adbd;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.saved-team-choice-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.saved-team-choice-copy strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.saved-team-choice-copy small {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #a6becb;
+  overflow-wrap: anywhere;
+}
+
+.saved-team-choice-status {
+  font-size: 10px;
+  color: var(--mint);
+  text-align: right;
+  flex: none;
+  display: grid;
+  gap: 4px;
+  max-width: 70px;
+}
+
+.saved-team-picker-foot {
+  padding: 10px 20px 13px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: #a6becb;
+  flex: none;
+}
+
+@media(max-width:480px) {
+  .saved-team-jump {
+    min-height: 40px;
+  }
+  .saved-team-picker-head {
+    padding: 15px 14px 12px;
+  }
+  .saved-team-picker-head h2 {
+    font-size: 22px;
+  }
+  .saved-team-picker-search {
+    padding: 0 14px 12px;
+  }
+  .saved-team-picker-list {
+    padding: 3px 14px 14px;
+  }
+  .saved-team-picker-foot {
+    padding: 10px 14px;
+  }
+  .saved-team-choice {
+    padding: 10px 8px;
+    gap: 6px;
+  }
+}
+
+/* Show build-roster-ready templates first; reveal incomplete lineups on demand. */
+
+.team-suggestions-header {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.team-suggestions-header>div {
+  min-width: 0;
+  flex: 1;
+}
+
+.team-suggestions-toggle {
+  flex: none;
+  font-size: 11px;
+  padding: 9px 12px;
+  white-space: nowrap;
+}
+
+.team-suggestions-toggle[aria-pressed="true"] {
+  background: #263d53;
+  border-color: #90dec566;
+  color: #c9ecdf;
+}
+
+.team-suggestions-empty {
+  grid-column: 1/-1;
+}
+
+@media(max-width:480px) {
+  .team-suggestions-toggle {
+    font-size: 10px;
+    padding: 8px 9px;
+  }
+  .team-suggestions-header {
+    gap: 8px;
+  }
+  .team-suggestions-header .section-title {
+    font-size: 19px;
+  }
+  .team-suggestions-header .section-sub {
+    font-size: 11px;
+  }
+}
+
+/* Other team templates stay in a separate, independently scrollable overlay. */
+
+#other-teams-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(860px,calc(100% - 24px));
+  max-height: min(86vh,760px);
+  max-height: min(86dvh,760px);
+  box-sizing: border-box;
+  padding: 0;
+  border: 1px solid #799eaa7d;
+  border-radius: 17px;
+  background: linear-gradient(150deg,#192d43,#0e1d30);
+  color: var(--text);
+  box-shadow: 0 24px 90px #000b;
+  overflow: hidden;
+}
+
+#other-teams-dialog::backdrop {
+  background: #020a18bc;
+  backdrop-filter: blur(5px);
+}
+
+#other-teams-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+#other-teams-dialog .talent-users-close svg {
+  display: block;
+  flex: none;
+  pointer-events: none;
+}
+
+#other-teams-list {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  align-content: start;
+  padding: 4px 20px 18px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #526e82 transparent;
+}
+
+#other-teams-list .team-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#other-teams-list .team-title small {
+  flex: none;
+}
+
+@media(max-width:640px) {
+  #other-teams-list {
+    grid-template-columns: minmax(0,1fr);
+    padding: 4px 14px 14px;
+  }
+}
+
+/* Other team templates: show real character portraits and distinguish missing roster members. */
+
+#other-teams-list .other-team-members {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 7px;
+  margin-top: 12px;
+  align-items: start;
+}
+
+#other-teams-list .other-team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  text-align: center;
+  color: var(--text);
+}
+
+#other-teams-list .other-team-member .picker-portrait {
+  width: 100%;
+  max-width: 76px;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  border: 1px solid #718b9c55;
+  flex: none;
+}
+
+#other-teams-list .other-team-member.is-owned .picker-portrait {
+  border-color: #90dec578;
+}
+
+#other-teams-list .other-team-member.is-missing .picker-portrait {
+  filter: grayscale(1);
+  opacity: .58;
+}
+
+#other-teams-list .other-team-member.is-missing {
+  color: #859aab;
+}
+
+#other-teams-list .other-team-member-name {
+  font-size: 11px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  font-weight: 650;
+}
+
+#other-teams-list .other-team-member-status {
+  font-size: 10px;
+  line-height: 1.2;
+  color: #90dec5;
+}
+
+#other-teams-list .other-team-member.is-missing .other-team-member-status {
+  color: #859aab;
+}
+
+#other-teams-list .other-team-member .picker-element-mark {
+  transform: scale(.78);
+  transform-origin: top left;
+}
+
+@media(max-width:420px) {
+  #other-teams-list .other-team-members {
+    gap: 5px;
+  }
+  #other-teams-list .other-team-member-name {
+    font-size: 10px;
+  }
+  #other-teams-list .other-team-member-status {
+    font-size: 9px;
+  }
+}
+
+/* Keep portraits and actions aligned without allowing wrapped descriptions to overlap.
+   Use content-sized flex children instead of vertically constrained subgrid rows. */
+
+#other-teams-list .team-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+#other-teams-list .team-card .team-title {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+#other-teams-list .team-card .team-hint {
+  flex: 0 0 auto;
+  line-height: 1.55;
+  margin: 7px 0 0;
+  overflow-wrap: anywhere;
+}
+
+#other-teams-list .team-card .other-team-members {
+  flex: 0 0 auto;
+  margin-top: 12px;
+}
+
+#other-teams-list .team-card .team-foot {
+  margin-top: auto;
+  padding-top: 13px;
+  flex: 0 0 auto;
+}
+
+#other-teams-list .other-team-member-name {
+  min-height: 2.6em;
+}
+
+@media(max-width:360px) {
+  #other-teams-list .other-team-member-name {
+    min-height: 3.9em;
+  }
+}
+
+@media(min-width:641px) {
+  #other-teams-list .team-card .team-hint {
+    min-height: 3.1em;
+  }
+}
+
+@media(min-width:641px) and (max-width:780px) {
+  #other-teams-list .team-card .team-title {
+    min-height: 46px;
+  }
+  #other-teams-list .team-card .team-hint {
+    min-height: 4.65em;
+  }
+}
+
+/* Character workspace: equally sized side-by-side panels and bounded pages. */
+
+#page-planner .planner-workspace {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  align-items: stretch;
+}
+
+#page-planner .planner-roster-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#page-planner .planner-roster-panel .planner-roster {
+  grid-template-columns: minmax(0,1fr);
+  align-content: start;
+  flex: 1;
+  min-height: 0;
+}
+
+#page-planner .planner-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  flex-wrap: wrap;
+}
+
+#page-planner .planner-pagination[hidden] {
+  display: none!important;
+}
+
+#page-planner .planner-pagination .saved-team-arrow {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+#page-planner .planner-pagination .saved-team-arrow svg {
+  width: 17px;
+  height: 17px;
+}
+
+#page-planner .planner-pagination select {
+  width: auto;
+  max-width: 100%;
+  min-width: 76px;
+  padding: 7px 9px;
+  font-size: 11px;
+  border-radius: 8px;
+  background: #1a2d42;
+  border: 1px solid #5264797a;
+  color: var(--text);
+}
+
+#page-planner .planner-page-label {
+  font-size: 11px;
+  color: var(--sub);
+  text-align: center;
+}
+
+#page-planner #planner-pick-grid {
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  grid-auto-rows: 130px;
+  height: 274px;
+  max-height: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #526d83 transparent;
+  scrollbar-gutter: stable;
+  align-content: start;
+  padding: 3px;
+  gap: 8px;
+}
+
+#page-planner #planner-pick-grid .picker-face {
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#page-planner #planner-pick-grid .picker-empty {
+  grid-row: 1;
+  align-self: start;
+}
+
+#page-planner #planner-pick-grid:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+
+#page-planner #planner-pick-selected {
+  min-height: 66px;
+  margin-bottom: 12px;
+}
+
+#page-planner #planner-pick-selected .picker-portrait {
+  flex: none;
+}
+
+#page-planner .planner-picker-footer {
+  margin-top: 9px;
+  display: grid;
+  gap: 6px;
+}
+
+#page-planner .planner-picker-footer .picker-foot {
+  margin: 0;
+  justify-content: center;
+}
+
+@media(max-width:1050px) {
+  #page-planner .planner-workspace {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+
+@media(max-width:770px) {
+  #page-planner #planner-pick-grid {
+    grid-auto-rows: 114px;
+    height: 242px;
+  }
+}
+
+@media(max-width:480px) {
+  #page-planner #planner-pick-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    grid-auto-rows: 120px;
+    height: 254px;
+  }
+}
+
+/* Preserve the existing character tile; give the trailing X its own touch target. */
+
+.team-slot-control {
+  position: relative;
+  min-width: 0;
+  margin-top: 4px;
+}
+
+.team-position .team-slot-control .team-pick-slot {
+  margin-top: 0;
+}
+
+.team-position .team-slot-control.has-character .team-pick-slot {
+  padding-right: 35px;
+}
+
+.team-slot-control.has-character .team-pick-slot-plus {
+  display: none!important;
+}
+
+.team-slot-remove {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #b6d5c9;
+  cursor: pointer;
+}
+
+.team-slot-remove svg {
+  display: block;
+  pointer-events: none;
+}
+
+.team-slot-remove:hover,.team-slot-remove:focus-visible {
+  color: #f3b2b2;
+  background: #efa4a51a;
+  outline-offset: 1px;
+}
+
+@media(max-width:420px) {
+  .team-position .team-slot-control:not(.has-character) .team-pick-slot-plus {
+    display: block;
+    font-size: 13px;
+  }
+  .team-position .team-slot-control.has-character .team-pick-slot {
+    padding-right: 34px;
+  }
+  .team-slot-control .team-pick-slot>span:nth-child(2) {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Stable planner card heights: page length must not resize the workspace.
+   Keep the three-card roster viewport independent of its current item count.
+   Only the content area scrolls if exceptionally long names or settings need room. */
+
+#page-planner .planner-workspace {
+  --planner-roster-height: 1180px;
+  --planner-add-height: 1180px;
+}
+
+#page-planner .planner-workspace>.panel {
+  box-sizing: border-box;
+  min-height: 0;
+  min-width: 0;
+}
+
+#page-planner .planner-workspace>.planner-roster-panel {
+  height: var(--planner-roster-height);
+  min-height: var(--planner-roster-height);
+  max-height: var(--planner-roster-height);
+}
+
+#page-planner .planner-workspace>.panel:not(.planner-roster-panel) {
+  height: var(--planner-add-height);
+  min-height: var(--planner-add-height);
+  max-height: var(--planner-add-height);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #526d83 transparent;
+}
+
+#page-planner .planner-roster-panel #planner-roster {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-content: start;
+  scrollbar-width: thin;
+  scrollbar-color: #526d83 transparent;
+}
+
+#page-planner .planner-roster-panel #roster-page-label {
+  flex: 0 0 17px;
+  min-height: 17px;
+}
+
+#page-planner .planner-roster-panel #roster-pagination {
+  flex: 0 0 36px;
+}
+
+/* Reserve footer space even when there is only one page. */
+
+#page-planner .planner-roster-panel #roster-pagination[hidden] {
+  display: flex!important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media(max-width:1050px) {
+  #page-planner .planner-workspace {
+    --planner-roster-height: 490px;
+    --planner-add-height: 1100px;
+  }
+}
+
+@media(max-width:790px) {
+  #page-planner .planner-workspace {
+    --planner-roster-height: 740px;
+    --planner-add-height: 1150px;
+  }
+}
+
+@media(max-width:620px) {
+  #page-planner .planner-workspace {
+    --planner-roster-height: 775px;
+    --planner-add-height: 1360px;
+  }
+}
+
+/* Roster view switch: detailed talent cards or a compact portrait gallery.
+   Neither mode changes the dimensions of the surrounding workspace. */
+
+#page-planner .roster-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex: none;
+}
+
+#page-planner .roster-view-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--sub);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+#page-planner .roster-view-control .switch {
+  width: 34px;
+  height: 20px;
+  flex: 0 0 34px;
+}
+
+#page-planner .roster-view-control .switch span:before {
+  width: 14px;
+  height: 14px;
+  top: 3px;
+  left: 3px;
+}
+
+#page-planner .roster-view-control .switch input:checked+span:before {
+  transform: translateX(14px);
+}
+
+#page-planner .planner-roster-panel #planner-roster.is-portrait-view {
+  grid-template-columns: repeat(auto-fill,minmax(99px,1fr));
+  grid-auto-rows: 126px;
+  gap: 10px;
+  align-items: start;
+  padding: 3px 3px 6px;
+}
+
+#page-planner .is-portrait-view .roster-portrait-tile {
+  width: 100%;
+  height: 126px;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 5px 4px 7px;
+}
+
+#page-planner .is-portrait-view .roster-portrait-tile .picker-portrait {
+  height: 81px;
+  width: 100%;
+  max-width: 88px;
+  flex: none;
+}
+
+#page-planner .is-portrait-view .roster-portrait-tile .picker-face-name {
+  min-height: 0;
+  font-size: 11px;
+}
+
+#page-planner .is-portrait-view .planner-empty {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+
+@media(max-width:770px) {
+  #page-planner .roster-header-actions {
+    justify-content: flex-start;
+    gap: 9px;
+    flex: 1 1 auto;
+  }
+  #page-planner .roster-section-heading {
+    flex-wrap: wrap;
+  }
+  #page-planner .roster-section-heading>div:first-child {
+    flex: 1 1 100%;
+  }
+}
+
+@media(max-width:480px) {
+  #page-planner .planner-roster-panel #planner-roster.is-portrait-view {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    grid-auto-rows: 115px;
+    gap: 7px;
+  }
+  #page-planner .is-portrait-view .roster-portrait-tile {
+    height: 115px;
+  }
+  #page-planner .is-portrait-view .roster-portrait-tile .picker-portrait {
+    height: 72px;
+  }
+  #page-planner .is-portrait-view .roster-portrait-tile .picker-face-name {
+    font-size: 10px;
+  }
+}
+
+/* Character settings overlay: reuse the detailed card without changing roster view. */
+
+.roster-stats-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  box-sizing: border-box;
+  width: min(570px,calc(100vw - 24px));
+  max-height: 88vh;
+  max-height: 88dvh;
+  overflow: hidden;
+  padding: 0;
+  background: linear-gradient(150deg,#192d43,#0e1d30);
+  color: var(--text);
+  border: 1px solid #799eaa7d;
+  border-radius: 18px;
+  box-shadow: 0 24px 90px #000b;
+}
+
+.roster-stats-dialog::backdrop {
+  background: #020a18bc;
+  backdrop-filter: blur(5px);
+}
+
+.roster-stats-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.roster-stats-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+
+.roster-stats-head h2 {
+  font: normal 23px/1.25 Georgia,serif;
+  color: #f4e6c7;
+  margin: 0;
+}
+
+.roster-stats-close {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  line-height: 0;
+  padding: 0;
+  background: #2a4357;
+  color: #e1eef0;
+  border: 1px solid #6d879877;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.roster-stats-close:hover,.roster-stats-close:focus-visible {
+  background: #376375;
+  border-color: #a7d8c8;
+}
+
+.roster-stats-body {
+  padding: 20px;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.roster-stats-body .roster-card {
+  padding: 0;
+  border: 0;
+  background: none;
+  min-width: 0;
+}
+
+.roster-stats-body .roster-heading-id {
+  min-width: 0;
+  flex: 1;
+}
+
+.roster-stats-body .roster-heading-id>div:last-child {
+  min-width: 0;
+}
+
+.roster-stats-body .roster-title,.roster-stats-body .roster-meta {
+  overflow-wrap: anywhere;
+}
+
+.roster-stats-body .roster-levels label {
+  min-width: 0;
+}
+
+.roster-stats-body .roster-levels label>span {
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr)!important;
+}
+
+.roster-stats-body .roster-levels input {
+  min-width: 0;
+  width: 100%;
+  text-align: center;
+  padding: 8px 4px;
+}
+
+.roster-stats-body .roster-line {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}
+
+.roster-stats-body .roster-line select {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.roster-stats-note {
+  margin: 0;
+  padding: 10px 20px 15px;
+  border-top: 1px solid var(--line);
+  color: var(--sub);
+  font-size: 11px;
+  flex: none;
+}
+
+@media(max-width:480px) {
+  .roster-stats-head {
+    padding: 13px 15px;
+  }
+  .roster-stats-body {
+    padding: 15px;
+  }
+  .roster-stats-body .roster-levels {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .roster-stats-body .roster-levels label {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,160px);
+    align-items: center;
+    gap: 10px;
+  }
+  .roster-stats-body .roster-line {
+    grid-template-columns: 1fr;
+  }
+  .roster-stats-note {
+    padding: 10px 15px 13px;
+  }
+}
+
+/* Portrait roster: one continuous scrollable gallery, without page controls. */
+
+#page-planner .planner-roster-panel.portrait-scroll-mode #roster-pagination,
+#page-planner .planner-roster-panel.portrait-scroll-mode #roster-pagination[hidden],
+#page-planner .planner-roster-panel.portrait-scroll-mode #roster-page-label {
+  display: none!important;
+}
+
+#page-planner .planner-roster-panel #planner-roster.is-portrait-view {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #526d83 transparent;
+  scrollbar-gutter: stable;
+  align-content: start;
+}
+
+/* Shared quick-remove dialog for both roster views; no workspace height changes. */
+
+#page-planner .roster-quick-remove {
+  font-size: 11px;
+  padding: 7px 10px;
+  gap: 6px;
+  white-space: nowrap;
+  color: #e4b6b5;
+}
+
+#page-planner .roster-quick-remove svg {
+  width: 14px;
+  height: 14px;
+}
+
+#page-planner .roster-quick-remove:hover:not(:disabled) {
+  border-color: #efa4a580;
+  background: #efa4a512;
+}
+
+.roster-remove-dialog {
+  width: min(740px,calc(100vw - 24px));
+  max-width: 740px;
+  max-height: 88dvh;
+}
+
+.roster-remove-controls {
+  padding: 14px 20px 12px;
+  flex: none;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: 9px;
+}
+
+.roster-remove-controls .input {
+  padding: 10px 12px;
+}
+
+.roster-remove-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.roster-remove-tools .btn {
+  font-size: 11px;
+  padding: 7px 10px;
+}
+
+.roster-remove-tools #roster-remove-count {
+  margin-left: auto;
+  color: var(--sub);
+  font-size: 12px;
+}
+
+.roster-remove-body {
+  padding: 15px 20px;
+}
+
+.roster-remove-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(95px,1fr));
+  gap: 9px;
+  align-content: start;
+}
+
+.roster-remove-grid .picker-face {
+  min-height: 116px;
+  padding: 5px;
+}
+
+.roster-remove-grid .picker-face.is-selected {
+  border-color: var(--danger);
+  background: #542e3b;
+  box-shadow: 0 0 0 1px #efa4a555 inset;
+}
+
+.roster-remove-grid .picker-tick {
+  background: var(--danger);
+  color: #48262c;
+}
+
+.roster-remove-foot {
+  padding: 13px 20px 16px;
+  border-top: 1px solid var(--line);
+  flex: none;
+  display: grid;
+  gap: 10px;
+}
+
+.roster-remove-foot p {
+  font-size: 11px;
+  color: var(--sub);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.roster-remove-foot .actions-row {
+  justify-content: flex-end;
+}
+
+.roster-remove-foot .btn {
+  padding: 10px 13px;
+}
+
+@media(max-width:480px) {
+  .roster-remove-controls,.roster-remove-body,.roster-remove-foot {
+    padding: 12px 14px;
+  }
+  .roster-remove-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 7px;
+  }
+  .roster-remove-grid .picker-face {
+    min-height: 108px;
+  }
+  .roster-remove-foot .actions-row .btn {
+    flex: 1;
+  }
+  .roster-remove-tools #roster-remove-count {
+    margin-left: 0;
+  }
+}
+
+/* Bulk saved-team removal, separate from character roster removal. */
+
+.saved-team-nav {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+
+#saved-team-quick-remove {
+  padding: 7px 9px;
+  min-height: 36px;
+  font-size: 11px;
+  gap: 5px;
+  white-space: nowrap;
+  color: #e4b6b5;
+}
+
+#saved-team-quick-remove svg {
+  width: 14px;
+  height: 14px;
+}
+
+#saved-team-quick-remove:hover:not(:disabled) {
+  border-color: #efa4a580;
+  background: #efa4a512;
+}
+
+#team-remove-dialog {
+  width: min(600px,calc(100vw - 24px));
+  max-width: 600px;
+}
+
+#team-remove-list {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+#team-remove-list .saved-team-choice.is-selected {
+  background: #542e3b;
+  border-color: var(--danger);
+}
+
+.team-remove-check {
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  border: 1px solid #829bab;
+  border-radius: 5px;
+  color: transparent;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.is-selected .team-remove-check {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #48262c;
+}
+
+#team-remove-count {
+  margin-left: auto;
+  color: var(--sub);
+  font-size: 12px;
+}
+
+@media(max-width:480px) {
+  #saved-team-quick-remove {
+    min-height: 40px;
+  }
+  #team-remove-count {
+    margin-left: 0;
+  }
+}
