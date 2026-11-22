@@ -1,0 +1,273 @@
+/* Dedicated settings navigation page */
+
+
+#page-settings .panel {
+  margin: 0;
+  min-width: 0;
+  padding: 20px;
+}
+
+#page-settings h3 {
+  font-size: 16px;
+  color: #edf2ed;
+  margin: 0 0 12px;
+}
+
+#page-settings .settings-server {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 0 14px;
+}
+
+#page-settings .settings-server h3 {
+  margin: 0;
+}
+
+#page-settings .settings-server-field {
+  width: min(240px,100%);
+  flex-shrink: 0;
+}
+
+#page-settings .settings-farming-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+#page-settings .coach-tracking-settings {
+  grid-column: 1/-1;
+}
+
+#page-settings .coach-plan-options {
+  border: 1px solid var(--line);
+  margin: 0;
+  padding: 20px;
+}
+
+#page-settings #coach-settings,#page-settings #weapon-settings {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+  align-items: end;
+}
+
+#page-settings #coach-settings label,#page-settings #weapon-settings label {
+  font-size: 12px;
+  color: #afc2ce;
+  min-width: 0;
+}
+
+#page-settings #coach-settings label .pj-select,#page-settings #weapon-settings label .pj-select {
+  margin-top: 6px;
+}
+
+#page-settings #coach-settings>button,#page-settings #weapon-settings>button {
+  grid-column: auto;
+  min-height: 44px;
+  width: 100%;
+  padding: 9px 8px;
+  margin: 0;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+#page-settings #coach-settings>button[type="submit"],#page-settings #weapon-settings>button[type="submit"] {
+  background: #90dec5;
+  color: #14333a;
+  border-color: transparent;
+}
+
+#page-settings #coach-settings:has(#coach-restart[hidden])>button[type="submit"],#page-settings #weapon-settings:has(#weapon-restart[hidden])>button[type="submit"] {
+  grid-column: 1/-1;
+}
+
+#page-settings .coach-backup-settings {
+  margin-bottom: 14px;
+}
+
+#page-settings .coach-backup-description {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b5cbd6;
+  margin: 12px 0 16px;
+}
+
+#page-settings .coach-backup-actions {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+  max-width: 500px;
+}
+
+#page-settings .coach-backup-actions .btn {
+  min-height: 42px;
+}
+
+#page-settings .coach-backup-note {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #92aebb;
+  margin: 13px 0 0;
+}
+
+#page-settings .coach-backup-status {
+  font-size: 12px;
+  color: var(--mint);
+  margin: 10px 0 0;
+}
+
+#page-settings .coach-backup-status:empty {
+  display: none;
+}
+
+#page-settings .settings-about {
+  padding: 4px 0 15px;
+}
+
+#page-settings [hidden] {
+  display: none!important;
+}
+
+@media(max-width:800px) {
+  #page-settings .settings-farming-grid {
+    grid-template-columns: 1fr;
+  }
+  #page-settings .panel {
+    padding: 15px;
+  }
+  #page-settings .settings-server {
+    display: block;
+  }
+  #page-settings .settings-server-field {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+@media(max-width:380px) {
+  #page-settings #coach-settings>button,#page-settings #weapon-settings>button {
+    grid-column: 1/-1;
+  }
+}
+
+/* Persistent, accessible save state for farming reminder preferences. */
+.reminder-feedback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  border: 1px solid #67819470;
+  border-radius: 12px;
+  padding: 13px 14px;
+  background: #172a3c;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.reminder-feedback-symbol {
+  width: 35px;
+  height: 35px;
+  flex: 0 0 35px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #90dec554;
+  border-radius: 10px;
+  background: #90dec51a;
+  color: var(--mint);
+  font-size: 20px;
+  font-weight: 800;
+}
+.reminder-feedback-copy { flex: 1; min-width: 0; }
+.reminder-feedback-copy strong { display: block; font-size: 13px; font-weight: 750; color: var(--text); line-height: 1.45; }
+.reminder-feedback-copy small { display: block; margin-top: 3px; color: #bacbd5; font-size: 11px; line-height: 1.55; overflow-wrap: break-word; }
+.reminder-feedback-badge {
+  flex: none;
+  border: 1px solid #90dec56b;
+  border-radius: 999px;
+  padding: 5px 10px;
+  background: #90dec518;
+  color: #b5f1d9;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.reminder-feedback[data-state="off"] .reminder-feedback-symbol,
+.reminder-feedback[data-state="off"] .reminder-feedback-badge { border-color: #8298a459; background: #92aabb16; color: #becdd5; }
+.reminder-feedback[data-state="unsaved"],
+.reminder-feedback[data-state="saving"] { border-color: #e8c98f8a; background: #362f2538; }
+.reminder-feedback[data-state="unsaved"] .reminder-feedback-symbol,
+.reminder-feedback[data-state="saving"] .reminder-feedback-symbol,
+.reminder-feedback[data-state="unsaved"] .reminder-feedback-badge,
+.reminder-feedback[data-state="saving"] .reminder-feedback-badge { color: #f2d49c; border-color: #e8c98f69; background: #e8c98f16; }
+.reminder-feedback[data-state="warning"] { border-color: #efa4a590; background: #4b24263b; }
+.reminder-feedback[data-state="warning"] .reminder-feedback-symbol,
+.reminder-feedback[data-state="warning"] .reminder-feedback-badge { border-color: #efa4a56b; background: #efa4a51a; color: #ffd1d1; }
+@media(max-width:380px) {
+  .reminder-feedback { gap: 8px; padding: 11px 10px; }
+  .reminder-feedback-symbol { width: 29px; height: 29px; flex-basis: 29px; }
+  .reminder-feedback-badge { font-size: 10px; padding: 4px 7px; }
+}
+@media(prefers-reduced-motion:reduce) { .reminder-feedback { transition: none; } }
+
+/* Farming notifications: standalone browser reminders. */
+
+.farming-reminder-settings {
+  margin: 0 0 18px;
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+}
+
+.farming-reminder-settings h3,.farming-reminder-settings p {
+  margin: 0;
+}
+
+.farming-reminder-settings #reminder-options {
+  display: grid;
+  gap: 12px;
+}
+
+.farming-reminder-settings [hidden] {
+  display: none!important;
+}
+
+.reminder-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.reminder-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--muted,#a4bbcd);
+  font-weight: 600;
+}
+
+.reminder-field input,.reminder-field select {
+  width: 100%;
+  min-width: 0;
+  color-scheme: dark;
+}
+
+.reminder-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media(max-width:480px) {
+  .farming-reminder-settings {
+    padding: 15px;
+  }
+  .reminder-fields {
+    grid-template-columns: 1fr;
+  }
+  .reminder-actions>* {
+    flex: 1 1 125px;
+  }
+}

@@ -1,0 +1,1282 @@
+/* Unified dropdown skin — original selects remain the form data source. */
+
+select {
+  color-scheme: dark;
+}
+
+.pj-select {
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.pj-select > select {
+  grid-area: 1/1;
+  opacity: 0;
+  pointer-events: none;
+  margin: 0!important;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.pj-select > .pj-select-button {
+  grid-area: 1/1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 12px;
+  text-align: left;
+  line-height: 1.35;
+  font: inherit;
+  color: #e7f1f4;
+  border: 1px solid #59768c70;
+  border-radius: 10px;
+  background: linear-gradient(145deg,#1a3045,#112338);
+  box-shadow: inset 0 1px 0 #dbefff06;
+  transition: background .16s,border-color .16s,box-shadow .16s;
+  cursor: pointer;
+}
+
+.pj-select-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.pj-select-chevron {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  color: #9ec6ca;
+  transition: transform .16s;
+}
+
+.pj-select-button:hover:not(:disabled) {
+  border-color: #88cbbb96;
+  background: linear-gradient(145deg,#28475a,#193447);
+}
+
+.pj-select-button:focus-visible,.pj-select-button[aria-expanded="true"] {
+  outline: none;
+  border-color: #90dec5;
+  box-shadow: 0 0 0 3px #90dec51a;
+}
+
+.pj-select-button[aria-expanded="true"] .pj-select-chevron {
+  transform: rotate(180deg);
+  color: var(--mint);
+}
+
+.pj-select-button:disabled {
+  cursor: not-allowed;
+  opacity: .48;
+}
+
+.roster-line .pj-select,.coach-preferences .pj-select {
+  margin-top: 5px;
+}
+
+.roster-line .pj-select-button {
+  padding: 9px 10px;
+  font-size: inherit;
+  border-radius: 8px;
+}
+
+.coach-preferences .pj-select {
+  min-width: 120px;
+}
+
+.coach-preferences .pj-select-button {
+  padding: 9px 11px;
+}
+
+.top-meta .pj-select,.planner-pagination .pj-select {
+  display: inline-grid;
+  width: auto;
+  flex: 0 1 auto;
+}
+
+.top-meta .pj-select {
+  max-width: 132px;
+}
+
+.top-meta .pj-select-button {
+  font-size: 12px;
+  padding: 8px 9px;
+  gap: 5px;
+  border-radius: 9px;
+}
+
+.planner-pagination .pj-select {
+  min-width: 76px;
+}
+
+.planner-pagination .pj-select-button {
+  font-size: 11px;
+  padding: 7px 9px;
+  gap: 7px;
+  border-radius: 8px;
+}
+
+.pj-dropdown-menu {
+  position: fixed;
+  inset: auto;
+  z-index: 9999;
+  margin: 0;
+  padding: 6px;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #506f84 transparent;
+  border: 1px solid #7ea8b476;
+  border-radius: 12px;
+  background: linear-gradient(155deg,#20374d,#112236);
+  color: #e6f0f2;
+  box-shadow: 0 16px 42px #020a15b0,0 0 0 1px #ffffff05 inset;
+  font: 12px/1.4 var(--font);
+}
+
+.pj-dropdown-menu[hidden] {
+  display: none!important;
+}
+
+.pj-dropdown-menu:popover-open {
+  display: block;
+}
+
+.pj-dropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 35px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #d1e0e8;
+  background: transparent;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.pj-dropdown-option + .pj-dropdown-option {
+  margin-top: 2px;
+}
+
+.pj-dropdown-option[aria-selected="true"] {
+  color: #b9f4dd;
+  background: #90dec51a;
+  border-color: #90dec538;
+}
+
+.pj-dropdown-option.is-highlighted,.pj-dropdown-option:hover:not([aria-disabled="true"]) {
+  background: #315065;
+  color: #f3fbfa;
+  border-color: #90dec54d;
+}
+
+.pj-dropdown-option[aria-selected="true"].is-highlighted {
+  background: #285649;
+  color: #e1fff3;
+}
+
+.pj-dropdown-option[aria-disabled="true"] {
+  opacity: .42;
+  cursor: not-allowed;
+}
+
+.pj-dropdown-check {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  color: var(--mint);
+  visibility: hidden;
+}
+
+.pj-dropdown-option[aria-selected="true"] .pj-dropdown-check {
+  visibility: visible;
+}
+
+@media(max-width:800px) {
+  .pj-dropdown-option {
+    min-height: 42px;
+    font-size: 13px;
+  }
+}
+
+/* Inventory Board: one owner per page, independent of material inventory storage. */
+
+#page-farming .farm-layout> .panel {
+  min-width: 0;
+}
+
+#page-farming .farm-owner-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 0 14px;
+  margin-bottom: 14px;
+  border-block: 1px solid var(--line);
+}
+
+#page-farming .farm-owner-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1 1 170px;
+}
+
+#page-farming .farm-owner-info .roster-face {
+  flex: none;
+  width: 44px;
+  height: 44px;
+}
+
+#page-farming .farm-owner-info .roster-face .picker-portrait {
+  width: 44px;
+  height: 44px;
+  max-width: 44px;
+}
+
+#page-farming .farm-owner-copy {
+  min-width: 0;
+}
+
+#page-farming #farm-owner-name {
+  display: block;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+  color: var(--text);
+}
+
+#page-farming #farm-owner-summary {
+  display: block;
+  font-size: 11px;
+  color: var(--sub);
+  margin-top: 2px;
+}
+
+#page-farming .farm-owner-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+#page-farming .farm-owner-controls .saved-team-arrow {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+#page-farming .farm-owner-controls .saved-team-arrow svg {
+  width: 17px;
+  height: 17px;
+}
+
+#page-farming .farm-owner-controls .pj-select {
+  width: clamp(125px,15vw,205px);
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+#page-farming .farm-owner-controls .pj-select-button {
+  font-size: 11px;
+  padding: 8px 9px;
+  border-radius: 8px;
+  gap: 5px;
+}
+
+#page-farming .farm-owner-controls select {
+  min-width: 0;
+  max-width: 100%;
+  font-size: 11px;
+}
+
+@media(max-width:540px) {
+  #page-farming .farm-owner-controls {
+    width: 100%;
+  }
+  #page-farming .farm-owner-controls .pj-select {
+    width: auto;
+    flex: 1;
+  }
+}
+
+/* Inventory Board bulk goal removal. */
+
+#page-farming .farm-filter {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#farm-quick-remove {
+  font-size: 11px;
+  padding: 7px 9px;
+  gap: 5px;
+  color: #e4b6b5;
+  white-space: nowrap;
+}
+
+#farm-quick-remove svg {
+  width: 14px;
+  height: 14px;
+}
+
+#farm-quick-remove:hover:not(:disabled) {
+  border-color: #efa4a580;
+  background: #efa4a512;
+}
+
+#farm-restore-auto {
+  font-size: 11px;
+  padding: 5px 0;
+  margin: 0 0 10px;
+}
+
+#farm-remove-dialog {
+  width: min(660px,calc(100vw - 24px));
+  max-width: 660px;
+}
+
+#farm-remove-list {
+  display: grid;
+  gap: 8px;
+}
+
+#farm-remove-list .saved-team-choice {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#farm-remove-list .saved-team-choice.is-selected {
+  border-color: var(--danger);
+  background: #542e3b;
+}
+
+#farm-remove-list .material-icon-art {
+  width: 42px;
+  height: 42px;
+}
+
+#farm-remove-list .saved-team-choice-copy {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+#farm-remove-list .farm-remove-kind {
+  font-size: 10px;
+  color: #a8c6ce;
+  white-space: nowrap;
+}
+
+#farm-remove-count {
+  margin-left: auto;
+  color: var(--sub);
+  font-size: 12px;
+}
+
+#farm-remove-dialog .roster-remove-controls .pj-select {
+  width: 100%;
+}
+
+@media(max-width:480px) {
+  #farm-remove-count {
+    margin-left: 0;
+  }
+  #farm-remove-list .material-icon-art {
+    width: 36px;
+    height: 36px;
+  }
+  #farm-remove-list .saved-team-choice {
+    padding: 9px 7px;
+    gap: 7px;
+  }
+  #farm-remove-list .farm-remove-kind {
+    white-space: normal;
+  }
+  #page-farming .panel-head {
+    flex-wrap: wrap;
+  }
+  #page-farming .farm-filter {
+    justify-content: flex-start;
+  }
+}
+
+/* Inventory Board desktop workspace: keep the navigation, goals and complete
+   new-target form in a single viewport. Only long lists scroll internally. */
+
+@media (min-width:801px) {
+  .app:has(#page-farming.active) {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .app:has(#page-farming.active)>.sidebar {
+    height: 100dvh;
+    min-height: 0;
+  }
+  .main:has(#page-farming.active) {
+    height: 100dvh;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .main:has(#page-farming.active)>.about-foot {
+    flex: none;
+    margin-top: 8px;
+    padding-top: 7px;
+    font-size: 10px;
+    line-height: 1.3;
+  }
+  #page-farming.active {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #page-farming>.eyebrow {
+    flex: none;
+  }
+  #page-farming>.page-title {
+    flex: none;
+  }
+  #page-farming>.lead {
+    flex: none;
+  }
+  #page-farming .farm-layout {
+    flex: 1 1 auto;
+    min-height: 0;
+    grid-template-columns: minmax(0,1.45fr) minmax(255px,1fr);
+    gap: 14px;
+    align-items: stretch;
+  }
+  #page-farming .farm-layout>.panel {
+    min-height: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    overflow: hidden;
+  }
+  #page-farming .panel-head {
+    flex: none;
+    gap: 6px 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  #page-farming .panel-head h3 {
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 0 0 3px;
+  }
+  #page-farming .panel-head p {
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 2px 0 0;
+  }
+  #page-farming .farm-filter {
+    gap: 4px;
+    justify-content: flex-start;
+  }
+  #page-farming .farm-filter .filter-btn,#page-farming #farm-quick-remove {
+    padding: 6px 8px;
+    min-height: 29px;
+    font-size: 10px;
+  }
+  #page-farming #farm-restore-auto {
+    flex: none;
+    align-self: flex-start;
+    margin: 0 0 6px;
+    padding: 3px 0;
+  }
+  #page-farming .farm-owner-nav {
+    flex: none;
+    gap: 6px 9px;
+    padding: 7px 0;
+    margin-bottom: 9px;
+  }
+  #page-farming .farm-owner-info {
+    flex: 1 1 125px;
+    gap: 8px;
+  }
+  #page-farming .farm-owner-info .roster-face,#page-farming .farm-owner-info .roster-face .picker-portrait {
+    width: 36px;
+    height: 36px;
+    max-width: 36px;
+  }
+  #page-farming .farm-owner-controls {
+    gap: 5px;
+    max-width: 100%;
+  }
+  #page-farming .farm-owner-controls .saved-team-arrow {
+    width: 30px;
+    height: 30px;
+  }
+  #page-farming .farm-owner-controls .pj-select {
+    width: clamp(98px,12vw,175px);
+    flex: 1 1 auto;
+  }
+  #page-farming .farm-owner-controls .pj-select-button {
+    padding: 6px 7px;
+    font-size: 10px;
+  }
+  #page-farming #farm-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #4e7185 transparent;
+    padding: 2px 4px 2px 1px;
+  }
+  #page-farming .farm-card {
+    padding: 10px 11px;
+    gap: 7px;
+    margin-bottom: 8px;
+    border-radius: 11px;
+  }
+  #page-farming .farm-card:last-child {
+    margin-bottom: 0;
+  }
+  #page-farming .farm-item-heading {
+    gap: 8px;
+  }
+  #page-farming .farm-item-heading .material-icon-art {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+  }
+  #page-farming .farm-title {
+    font-size: 13px;
+    line-height: 1.28;
+  }
+  #page-farming .farm-character {
+    font-size: 10px;
+    margin-top: 1px;
+    line-height: 1.3;
+  }
+  #page-farming .farm-meta {
+    font-size: 10px;
+    line-height: 1.35;
+  }
+  #page-farming .farm-auto-label {
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+  #page-farming .farm-actions {
+    gap: 8px;
+  }
+  #page-farming .counter {
+    gap: 6px;
+  }
+  #page-farming .counter button {
+    width: 27px;
+    height: 27px;
+    font-size: 16px;
+  }
+  #page-farming .counter strong {
+    font-size: 12px;
+    min-width: 40px;
+    white-space: nowrap;
+  }
+  #page-farming #farm-form {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #4e7185 transparent;
+    padding: 1px 2px 3px;
+  }
+  #page-farming #farm-form .field {
+    margin-bottom: 10px;
+  }
+  #page-farming #farm-form .field-grid {
+    gap: 9px;
+  }
+  #page-farming #farm-form .input-label {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  #page-farming #farm-form .input,#page-farming #farm-form .pj-select-button,#page-farming #farm-form .select {
+    padding: 8px 10px;
+    font-size: 12px;
+    min-height: 35px;
+  }
+  #page-farming #farm-form .material-select-button {
+    min-height: 49px;
+    padding: 7px 8px;
+    gap: 7px;
+  }
+  #page-farming #farm-form .material-icon-art {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+  }
+  #page-farming #farm-form .material-choice-title {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  #page-farming #farm-form .material-choice-sub {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+  #page-farming #farm-form .material-choice-action {
+    font-size: 10px;
+  }
+  #page-farming #farm-form .help,#page-farming #farm-form .material-picked-hint {
+    font-size: 10px;
+    line-height: 1.35;
+    margin-top: 4px;
+  }
+  #page-farming #farm-form button[type="submit"] {
+    padding: 9px 12px;
+    font-size: 12px;
+    min-height: 35px;
+  }
+}
+
+/* Low-height laptops: rearrange each material row, rather than reduce the
+   controls to an unusable size. The form and all filters remain in view. */
+
+@media (min-width:801px) and (max-height:850px) {
+
+  #page-farming .farm-layout {
+    gap: 11px;
+  }
+  #page-farming .farm-layout>.panel {
+    padding: 11px;
+  }
+  #page-farming .panel-head {
+    margin-bottom: 6px;
+  }
+  #page-farming .panel-head h3 {
+    font-size: 18px;
+  }
+  #page-farming .farm-owner-nav {
+    padding: 5px 0;
+    margin-bottom: 5px;
+  }
+  #page-farming .farm-card {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    gap: 4px 8px;
+    padding: 8px 9px;
+    margin-bottom: 6px;
+  }
+  #page-farming .farm-card-head {
+    grid-column: 1/-1;
+    min-width: 0;
+    align-items: center;
+  }
+  #page-farming .farm-card>.farm-meta {
+    grid-column: 1;
+    align-self: center;
+  }
+  #page-farming .farm-card>.progress-track {
+    grid-column: 1/-1;
+    grid-row: 3;
+    height: 5px;
+  }
+  #page-farming .farm-actions {
+    display: contents;
+  }
+  #page-farming .farm-actions>.farm-meta {
+    grid-column: 1;
+    grid-row: 4;
+    align-self: center;
+  }
+  #page-farming .farm-actions>.counter {
+    grid-column: 2;
+    grid-row: 2/3;
+    justify-self: end;
+    align-self: center;
+  }
+  #page-farming .farm-item-heading .material-icon-art {
+    width: 34px;
+    height: 34px;
+  }
+  #page-farming #farm-form .field {
+    margin-bottom: 8px;
+  }
+  #page-farming #farm-form .input-label {
+    margin-bottom: 3px;
+  }
+  #page-farming #farm-form .input,#page-farming #farm-form .pj-select-button,#page-farming #farm-form .select {
+    padding: 7px 9px;
+    min-height: 32px;
+  }
+  #page-farming #farm-form .material-select-button {
+    min-height: 44px;
+    padding: 5px 7px;
+  }
+  #page-farming #farm-form .material-icon-art {
+    width: 32px;
+    height: 32px;
+  }
+  #page-farming #farm-form .help,#page-farming #farm-form .material-picked-hint {
+    margin-top: 3px;
+  }
+}
+
+@media (min-width:801px) and (max-height:620px) {
+
+  #page-farming .farm-layout>.panel {
+    padding: 9px;
+  }
+  #page-farming .panel-head p {
+    font-size: 10px;
+  }
+  #page-farming #farm-form .field {
+    margin-bottom: 6px;
+  }
+  #page-farming #farm-form .material-choice-sub {
+    display: none;
+  }
+  #page-farming #farm-form .help,#page-farming #farm-form .material-picked-hint {
+    font-size: 10px;
+  }
+  #page-farming .farm-card {
+    padding: 6px 8px;
+    gap: 3px 6px;
+  }
+
+  #page-farming .panel-head p.help {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+}
+
+@media (min-width:1000px) and (max-height:700px) {
+  #page-farming .farm-card-head {
+    grid-column: 1;
+    grid-row: 1;
+    gap: 5px;
+  }
+  #page-farming .farm-item-heading {
+    min-width: 0;
+    gap: 6px;
+  }
+  #page-farming .farm-item-heading .material-icon-art {
+    width: 30px;
+    height: 30px;
+  }
+  #page-farming .farm-title {
+    font-size: 12px;
+  }
+  #page-farming .farm-character {
+    font-size: 9px;
+  }
+  #page-farming .farm-actions>.counter {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  #page-farming .farm-card>.farm-meta {
+    grid-column: 1/-1;
+    grid-row: 2;
+  }
+  #page-farming .farm-card>.progress-track {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: center;
+  }
+  #page-farming .farm-actions>.farm-meta {
+    grid-column: 2;
+    grid-row: 3;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width:801px) and (max-width:999px) {
+
+  #page-farming .farm-layout {
+    gap: 8px;
+    grid-template-columns: minmax(0,1.25fr) minmax(235px,1fr);
+  }
+  #page-farming .farm-owner-controls {
+    flex: 1 1 auto;
+  }
+  #page-farming .farm-owner-controls .pj-select {
+    width: 85px;
+  }
+  #page-farming .farm-filter {
+    gap: 3px;
+  }
+  #page-farming .farm-filter .filter-btn,#page-farming #farm-quick-remove {
+    padding: 5px 6px;
+  }
+}
+
+/* Comfortable desktop Inventory Board; compact fallback on very short screens. */
+
+@media(min-width:1200px) and (min-height:640px) {
+  #page-farming {
+    --farm-space: clamp(12px,calc(12px + (100dvh - 640px)*.035),24px);
+    --farm-art: clamp(42px,calc(42px + (100dvh - 640px)*.07),64px);
+    --farm-control: clamp(32px,calc(32px + (100dvh - 640px)*.04),44px);
+  }
+
+  #page-farming .farm-layout {
+    gap: 16px;
+  }
+  #page-farming .farm-layout>.panel {
+    padding: var(--farm-space);
+  }
+  #page-farming .panel-head {
+    gap: 8px 12px;
+    margin-bottom: 8px;
+  }
+  #page-farming .panel-head h3 {
+    font-size: clamp(21px,calc(21px + (100dvh - 640px)*.02),26px);
+    margin-bottom: 4px;
+  }
+  #page-farming .panel-head p,#page-farming .panel-head p.help {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  #page-farming .farm-filter {
+    gap: 5px;
+  }
+  #page-farming .farm-filter .filter-btn,#page-farming #farm-quick-remove {
+    min-height: 32px;
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+  #page-farming .farm-owner-nav {
+    padding: 8px 0;
+    margin-bottom: 8px;
+    gap: 8px 10px;
+  }
+  #page-farming .farm-owner-info .roster-face,#page-farming .farm-owner-info .roster-face .picker-portrait {
+    width: 42px;
+    height: 42px;
+    max-width: 42px;
+  }
+  #page-farming #farm-owner-name {
+    font-size: 15px;
+  }
+  #page-farming #farm-owner-summary {
+    font-size: 12px;
+  }
+  #page-farming .farm-owner-controls .saved-team-arrow {
+    width: 35px;
+    height: 35px;
+  }
+  #page-farming .farm-owner-controls .pj-select-button {
+    font-size: 12px;
+    min-height: 35px;
+    padding: 8px 9px;
+  }
+  #page-farming .farm-card {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    gap: 5px 10px;
+    padding: clamp(9px,calc(9px + (100dvh - 640px)*.035),22px);
+    margin-bottom: 9px;
+    border-radius: 13px;
+    background: linear-gradient(145deg,#14263a,#0f1d2e);
+  }
+  #page-farming .farm-card-head {
+    grid-column: 1/-1;
+    grid-row: 1;
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+  }
+  #page-farming .farm-item-heading {
+    gap: 11px;
+    min-width: 0;
+  }
+  #page-farming .farm-item-heading .material-icon-art {
+    width: var(--farm-art);
+    height: var(--farm-art);
+    border-radius: 11px;
+  }
+  #page-farming .farm-title {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+  #page-farming .farm-character {
+    font-size: 11px;
+    line-height: 1.35;
+    margin-top: 3px;
+  }
+  #page-farming .farm-auto-label {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+  #page-farming .farm-card>.farm-meta {
+    grid-column: 1;
+    grid-row: 2;
+    line-height: 1.4;
+    font-size: 11px;
+  }
+  #page-farming .farm-card>.progress-track {
+    grid-column: 1;
+    grid-row: 3;
+    height: 7px;
+    align-self: center;
+  }
+  #page-farming .farm-actions {
+    display: contents;
+  }
+  #page-farming .farm-actions>.counter {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-self: center;
+  }
+  #page-farming .farm-actions>.farm-meta {
+    grid-column: 2;
+    grid-row: 3;
+    text-align: right;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  #page-farming .counter {
+    gap: 9px;
+  }
+  #page-farming .counter button {
+    width: var(--farm-control);
+    height: var(--farm-control);
+    font-size: 19px;
+    border-radius: 9px;
+  }
+  #page-farming .counter strong {
+    font-size: 14px;
+    min-width: 46px;
+  }
+  #page-farming #farm-form {
+    padding: 2px 2px 4px;
+  }
+  #page-farming #farm-form .field {
+    margin-bottom: clamp(9px,calc(9px + (100dvh - 640px)*.045),25px);
+  }
+  #page-farming #farm-form .field-grid {
+    gap: 12px;
+  }
+  #page-farming #farm-form .input-label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  #page-farming #farm-form .input,#page-farming #farm-form .pj-select-button,#page-farming #farm-form .select {
+    font-size: 13px;
+    min-height: clamp(38px,calc(38px + (100dvh - 640px)*.04),53px);
+    padding: 9px 11px;
+  }
+  #page-farming #farm-form .material-select-button {
+    min-height: clamp(56px,calc(56px + (100dvh - 640px)*.06),82px);
+    padding: 8px 10px;
+    gap: 10px;
+  }
+  #page-farming #farm-form .material-icon-art {
+    width: var(--farm-art);
+    height: var(--farm-art);
+    border-radius: 11px;
+  }
+  #page-farming #farm-form .material-choice-title {
+    font-size: 14px;
+  }
+  #page-farming #farm-form .material-choice-sub {
+    font-size: 11px;
+    display: block;
+  }
+  #page-farming #farm-form .material-choice-action {
+    font-size: 11px;
+  }
+  #page-farming #farm-form .help,#page-farming #farm-form .material-picked-hint {
+    font-size: 11px;
+    line-height: 1.45;
+    margin-top: 5px;
+  }
+  #page-farming #farm-form button[type="submit"] {
+    font-size: 14px;
+    min-height: 42px;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+}
+
+@media(min-width:1200px) and (min-height:640px) {
+  #page-farming .farm-card-head {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: space-between;
+  }
+  #page-farming .farm-actions>.counter {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  #page-farming .farm-card>.farm-meta {
+    grid-column: 1/-1;
+    grid-row: 2;
+  }
+  #page-farming .farm-card>.progress-track {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  #page-farming .farm-actions>.farm-meta {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  #page-farming .farm-card {
+    min-height: clamp(103px,calc(103px + (100dvh - 640px)*.20),190px);
+  }
+  #page-farming .farm-layout {
+    grid-template-columns: minmax(0,1.48fr) minmax(0,1fr);
+    gap: 18px;
+  }
+}
+
+@media(min-width:1250px) and (min-height:850px) {
+  #page-farming .farm-title {
+    font-size: 17px;
+  }
+  #page-farming .farm-character,#page-farming .farm-card>.farm-meta,#page-farming .farm-actions>.farm-meta {
+    font-size: 12px;
+  }
+  #page-farming #farm-form .input-label {
+    font-size: 13px;
+  }
+  #page-farming #farm-form .material-choice-title {
+    font-size: 15px;
+  }
+  #page-farming #farm-form .material-choice-sub,#page-farming #farm-form .help,#page-farming #farm-form .material-picked-hint {
+    font-size: 12px;
+  }
+}
+
+@media(min-width:1200px) and (min-height:640px) and (max-height:850px) {
+  #page-farming .farm-layout>.panel:first-child>.panel-head {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    gap: 3px 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  #page-farming .farm-layout>.panel:first-child>.panel-head>div:first-child {
+    display: contents;
+  }
+  #page-farming .farm-layout>.panel:first-child>.panel-head h3 {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+    font-size: 20px;
+  }
+  #page-farming .farm-layout>.panel:first-child>.panel-head .farm-filter {
+    grid-column: 2;
+    grid-row: 1;
+    gap: 4px;
+  }
+  #page-farming .farm-layout>.panel:first-child>.panel-head p {
+    grid-column: 1/-1;
+    margin: 0;
+  }
+  #page-farming .farm-filter .filter-btn,#page-farming #farm-quick-remove {
+    padding: 6px 7px;
+    font-size: 10px;
+    min-height: 30px;
+  }
+  #page-farming .farm-card {
+    min-height: clamp(100px,calc(100px + (100dvh - 640px)*.13),128px);
+    padding: clamp(9px,calc(9px + (100dvh - 640px)*.015),13px);
+    gap: 4px 10px;
+    margin-bottom: 8px;
+  }
+  #page-farming {
+    --farm-art: clamp(42px,calc(42px + (100dvh - 640px)*.035),50px);
+  }
+  #page-farming #farm-form .field {
+    margin-bottom: clamp(7px,calc(7px + (100dvh - 640px)*.035),14px);
+  }
+  #page-farming #farm-form .input,#page-farming #farm-form .pj-select-button,#page-farming #farm-form .select {
+    min-height: 39px;
+    padding: 8px 10px;
+  }
+  #page-farming #farm-form .field-grid .field {
+    margin-bottom: 0;
+  }
+  #page-farming #farm-form .material-select-button {
+    min-height: 54px;
+  }
+  #page-farming #farm-form .help,#page-farming #farm-form .material-picked-hint {
+    margin-top: 4px;
+  }
+}
+
+@media(min-width:1200px) and (min-height:640px) and (max-height:700px) {
+
+  #page-farming .farm-layout>.panel {
+    padding: 12px;
+  }
+  #page-farming .farm-layout>.panel:first-child>.panel-head {
+    grid-template-columns: minmax(0,1fr) auto;
+    gap: 2px 6px;
+    margin-bottom: 6px;
+  }
+  #page-farming .farm-layout>.panel:first-child>.panel-head #farm-count-label {
+    grid-column: 1;
+    grid-row: 2;
+    white-space: nowrap;
+  }
+  #page-farming .farm-layout>.panel:first-child>.panel-head p.help {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 10px;
+    text-align: right;
+  }
+  #page-farming .farm-owner-nav {
+    padding: 6px 0;
+    margin-bottom: 6px;
+  }
+  #page-farming .farm-card {
+    min-height: 96px;
+    padding: 7px 10px;
+    margin-bottom: 7px;
+    gap: 4px 10px;
+  }
+  #page-farming {
+    --farm-art: 42px;
+    --farm-control: 32px;
+  }
+  #page-farming #farm-form .field {
+    margin-bottom: 6px;
+  }
+  #page-farming #farm-form .field-grid .field {
+    margin-bottom: 0;
+  }
+  #page-farming #farm-form .input-label {
+    margin-bottom: 4px;
+  }
+  #page-farming #farm-form .input,#page-farming #farm-form .select,#page-farming #farm-form .pj-select-button {
+    min-height: 37px;
+    padding: 7px 10px;
+  }
+  #page-farming #farm-form .material-select-button {
+    padding: 7px 10px;
+    min-height: 55px;
+  }
+}
+
+@media(min-width:1400px) and (min-height:665px) and (max-height:700px) {
+  #page-farming .farm-card {
+    min-height: 108px;
+    padding: 10px 13px;
+    margin-bottom: 9px;
+  }
+  #page-farming {
+    --farm-art: 46px;
+    --farm-control: 35px;
+  }
+  #page-farming .farm-title {
+    font-size: 16px;
+  }
+  #page-farming #farm-form .field {
+    margin-bottom: 10px;
+  }
+  #page-farming #farm-form .field-grid .field {
+    margin-bottom: 4px;
+  }
+  #page-farming #farm-form .input,#page-farming #farm-form .select,#page-farming #farm-form .pj-select-button {
+    min-height: 40px;
+  }
+}
+
+/* Inventory Board: emphasize the current character without resizing material rows. */
+
+#page-farming {
+  --farm-owner-art: 64px;
+  --farm-owner-name-size: 18px;
+}
+
+#page-farming .farm-owner-info {
+  gap: 12px;
+}
+
+#page-farming .farm-owner-info .roster-face,
+#page-farming .farm-owner-info .roster-face .picker-portrait {
+  width: var(--farm-owner-art);
+  height: var(--farm-owner-art);
+  max-width: var(--farm-owner-art);
+  flex: none;
+}
+
+#page-farming .farm-owner-info .roster-face .picker-portrait {
+  border-radius: 13px;
+}
+
+#page-farming .farm-owner-info .roster-face .picker-element-mark {
+  transform: scale(.9);
+}
+
+#page-farming #farm-owner-name {
+  font-size: var(--farm-owner-name-size);
+  line-height: 1.25;
+}
+
+@media(min-width:801px) {
+  #page-farming {
+    --farm-owner-art: clamp(52px,calc(52px + (100dvh - 600px)*.12),88px);
+    --farm-owner-name-size: clamp(16px,calc(16px + (100dvh - 600px)*.018),22px);
+  }
+  #page-farming .farm-owner-nav {
+    padding-block: 5px;
+  }
+}
+
+@media(min-width:1200px) and (min-height:720px) {
+  #page-farming {
+    --farm-owner-art: clamp(52px,calc(52px + (100dvh - 720px)*.42),92px);
+    --farm-owner-name-size: clamp(19px,calc(19px + (100dvh - 720px)*.013),23px);
+  }
+}
+
+@media(min-width:801px) and (max-height:620px) {
+  #page-farming {
+    --farm-owner-art: 48px;
+    --farm-owner-name-size: 16px;
+  }
+  #page-farming .farm-owner-nav {
+    padding-block: 3px;
+  }
+}
+
+#page-farming { animation: none; }
+#page-farming.active.is-preparing-entry { opacity: .1; transform: translateY(6px); }
+#page-farming.active.is-entering { animation: fade .25s ease backwards; }
+@media(prefers-reduced-motion:reduce) { #page-farming.active.is-preparing-entry { opacity: 1; transform: none; } }

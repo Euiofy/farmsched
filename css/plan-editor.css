@@ -1,0 +1,56 @@
+/* Compact plan editor; only portrait grid scrolls. */
+#page-roadmap .coach-today-rich .coach-mini-tools.plan-edit-tools { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+#page-roadmap .coach-mini-tools.plan-edit-tools .btn { min-width:0; padding-inline:5px; text-align:center; line-height:1.3; }
+#page-roadmap .plan-edit-trigger { color:var(--mint); border-color:#90dec54d; }
+#page-roadmap .coach-rest .plan-edit-trigger { display:flex; margin:10px auto 0; }
+#plan-edit-dialog { position:fixed; inset:0; margin:auto; width:min(850px,calc(100vw - 24px)); max-width:none; height:min(740px,90dvh); max-height:none; padding:0; overflow:hidden; border:1px solid #799eaa7d; border-radius:18px; background:linear-gradient(150deg,#192d43,#0e1d30); color:var(--text); box-shadow:0 24px 90px #000b; }
+#plan-edit-dialog[open] { display:flex; flex-direction:column; }
+#plan-edit-dialog [hidden] { display:none!important; }
+#plan-edit-dialog::backdrop { background:#020a18bc; backdrop-filter:blur(5px); }
+.plan-edit-head,.plan-edit-foot { flex:none; padding:14px 16px; }
+.plan-edit-head { display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--line); }
+.plan-edit-head h2 { margin:0; flex:1; min-width:0; font:24px/1.15 Georgia,serif; color:#f4e6c7; }
+.plan-edit-switch { flex:none; display:inline-flex; gap:2px; background:#0e1d30; border:1px solid #52717d80; border-radius:10px; padding:3px; }
+.plan-edit-switch button { position:relative; border:0; border-radius:7px; padding:8px 10px; background:transparent; color:#a7bdce; font:700 12px/1.2 var(--font); white-space:nowrap; }
+.plan-edit-switch button[aria-pressed=true] { color:#aff0d5; background:#294c50; }
+.plan-edit-switch button.has-changes::after { content:''; position:absolute; top:3px; right:3px; width:5px; height:5px; background:var(--gold); border-radius:50%; }
+.plan-edit-close { flex:none; display:grid; place-items:center; width:38px; height:38px; border:1px solid var(--line); border-radius:9px; background:#1e3449; color:var(--text); font-size:24px; }
+.plan-edit-body,.plan-edit-pane { display:flex; flex:1; flex-direction:column; min-height:0; min-width:0; overflow:hidden; }
+.plan-edit-body { padding:10px 16px 0; }
+#plan-edit-dialog .picker-shell { display:flex; flex:1; flex-direction:column; min-height:0; min-width:0; overflow:hidden; margin:0; border:0; padding:0; background:transparent; }
+#plan-edit-dialog .picker-header { display:none; }
+#plan-edit-dialog .picker-selection { flex:none; display:flex; flex-wrap:nowrap; overflow-x:auto; align-items:center; gap:6px; margin:0 0 6px; min-height:34px; scrollbar-width:thin; }
+#plan-edit-dialog .picker-selection>* { flex:none; white-space:nowrap; }
+#plan-edit-dialog .picker-chip { padding:4px 7px; gap:5px; min-height:32px; font-size:11px; }
+#plan-edit-dialog .picker-mini-face,#plan-edit-dialog .picker-mini-face .picker-portrait,#plan-edit-dialog #weapon-pick-selected .weapon-plan-art { height:23px; width:23px; }
+#plan-edit-dialog .picker-no-selection,#plan-edit-dialog .coach-overlap-note:not(.is-warning) { display:none; }
+#plan-edit-dialog .coach-overlap-note.is-warning { flex:none; margin:2px 0 6px; padding:6px 8px; font-size:11px; line-height:1.3; max-height:56px; overflow:auto; }
+#plan-edit-dialog .picker-search { flex:none; margin-bottom:6px; }
+#plan-edit-dialog .picker-search input { height:39px; }
+#plan-edit-dialog .picker-elements { flex:none; padding:1px 1px 5px; gap:5px; }
+#plan-edit-dialog .picker-element { padding:6px 8px; min-height:34px; font-size:11px; }
+#page-roadmap #plan-edit-dialog .picker-grid { flex:1; min-height:0; max-height:none; overflow-y:auto; overscroll-behavior:contain; grid-template-columns:repeat(auto-fill,minmax(94px,1fr)); grid-auto-rows:128px; gap:7px; padding:3px 2px 7px; }
+#plan-edit-dialog .picker-foot { flex:none; margin:3px 0 5px; font-size:10px; }
+#page-roadmap #plan-edit-dialog .picker-grid .picker-face { height:100%; min-height:0; gap:4px; padding:5px 3px; }
+#plan-edit-dialog .picker-face-name { min-height:0; }
+#plan-edit-dialog .picker-face>.picker-portrait { flex:none; }
+#plan-edit-dialog .picker-face .farm-block-label { display:none; }
+.plan-edit-empty { padding:24px 14px; text-align:center; color:var(--sub); margin:auto; }
+.plan-edit-foot { border-top:1px solid var(--line); padding-block:9px; }
+#plan-edit-status { margin:0 0 6px; color:var(--sub); font-size:11px; line-height:1.3; }
+.plan-edit-actions { display:flex; gap:8px; justify-content:flex-end; }
+.plan-edit-actions .btn { min-width:110px; padding-block:9px; min-height:42px; }
+@media(max-width:767px) {
+ #page-roadmap .coach-today-rich .coach-mini-tools.plan-edit-tools { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ #page-roadmap .plan-edit-tools .plan-edit-trigger { grid-column:1/-1; }
+ #plan-edit-dialog { width:calc(100vw - 12px); height:calc(100dvh - 12px); border-radius:14px; }
+ .plan-edit-head { padding:8px 9px; gap:6px; } .plan-edit-head h2 { font-size:17px; line-height:1.1; }
+ .plan-edit-switch button { font-size:10px; padding:9px 6px; } .plan-edit-close { width:34px; height:36px; }
+ .plan-edit-body { padding:6px 8px 0; }
+ #page-roadmap #plan-edit-dialog .picker-grid { grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-rows:118px; gap:6px; }
+ #plan-edit-dialog .picker-portrait,#page-roadmap #plan-edit-dialog #weapon-pick-grid .weapon-plan-art { height:72px; width:min(100%,84px); }
+ #plan-edit-dialog .picker-face-name { font-size:11px; overflow-wrap:break-word; line-height:1.15; }
+ .plan-edit-foot { padding:7px 9px max(7px,env(safe-area-inset-bottom)); } .plan-edit-actions .btn { flex:1; min-width:0; }
+}
+@media(min-width:470px) and (max-width:767px) { #page-roadmap #plan-edit-dialog .picker-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media(max-height:460px) and (max-width:767px) { #page-roadmap #plan-edit-dialog .picker-grid { grid-auto-rows:102px; } #plan-edit-dialog .picker-face .picker-portrait,#page-roadmap #plan-edit-dialog #weapon-pick-grid .weapon-plan-art { height:56px; } }

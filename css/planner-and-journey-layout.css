@@ -1,0 +1,576 @@
+/* Build Planner: keep character roster cards readable at every panel width. */
+
+#page-planner .planner-workspace {
+  grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr);
+  align-items: start;
+}
+
+#page-planner .planner-workspace>.panel {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#page-planner .planner-roster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(min(100%,340px),1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+#page-planner .roster-card {
+  min-width: 0;
+  max-width: 100%;
+  padding: 16px;
+  overflow: hidden;
+}
+
+#page-planner .roster-heading {
+  min-width: 0;
+  align-items: flex-start;
+}
+
+#page-planner .roster-heading-id {
+  flex: 1;
+  min-width: 0;
+  align-items: flex-start;
+}
+
+#page-planner .roster-heading-id>div:last-child {
+  min-width: 0;
+  flex: 1;
+}
+
+#page-planner .roster-title,#page-planner .roster-meta {
+  overflow-wrap: anywhere;
+  word-break: normal;
+  white-space: normal;
+}
+
+#page-planner .roster-levels {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 9px;
+}
+
+#page-planner .roster-levels label {
+  display: block;
+  min-width: 0;
+}
+
+#page-planner .roster-levels label>span {
+  min-width: 0;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr)!important;
+}
+
+#page-planner .roster-levels input {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+  padding: 8px 4px;
+  text-align: center;
+}
+
+#page-planner .roster-line {
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+}
+
+#page-planner .roster-line label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#page-planner .roster-line select {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media(max-width:1050px) {
+  #page-planner .planner-workspace {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+
+@media(max-width:790px) {
+  #page-planner .roster-card {
+    padding: 14px;
+  }
+  #page-planner .roster-levels {
+    grid-template-columns: minmax(0,1fr);
+    gap: 11px;
+  }
+  #page-planner .roster-levels label {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,145px);
+    align-items: center;
+    gap: 10px;
+  }
+  #page-planner .roster-levels input {
+    padding: 10px 4px;
+  }
+  #page-planner .roster-line {
+    grid-template-columns: minmax(0,1fr);
+  }
+}
+
+/* First-screen farming UX: keep recommendation, actions and progress above the fold.
+   The full 3–4-week calendar remains present, but never stretches the Today column. */
+
+#page-roadmap .coach-heading {
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+#page-roadmap:has(#coach-active:not([hidden])) .coach-heading .lead {
+  display: none;
+}
+
+#page-roadmap:has(#coach-active:not([hidden])) .coach-heading-right .coach-server-pill {
+  display: none;
+}
+
+#page-roadmap .coach-week-pill {
+  padding: 6px 10px;
+  font-size: 11px;
+}
+
+#page-roadmap .coach-combined-card {
+  padding: 17px 18px;
+  margin-top: 5px;
+}
+
+#page-roadmap .coach-combined-grid {
+  align-items: start;
+  gap: 20px;
+}
+
+#page-roadmap .coach-left-panel {
+  display: block;
+  min-height: 0;
+  align-self: start;
+}
+
+#page-roadmap .coach-left-panel .coach-progress-block {
+  margin-top: 12px!important;
+  padding-top: 11px;
+  flex: none;
+}
+
+#page-roadmap .coach-left-panel #coach-today {
+  margin-bottom: 0;
+}
+
+#page-roadmap .coach-focus-title h2 {
+  font-size: clamp(19px,1.75vw,25px);
+  margin: 4px 0 0;
+}
+
+#page-roadmap:has(#coach-active:not([hidden])) .coach-focus-title .coach-people {
+  display: none;
+}
+
+#page-roadmap .coach-today-rich {
+  gap: 9px;
+  margin-top: 10px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-person-details {
+  gap: 10px;
+}
+
+#page-roadmap .coach-today-rich .coach-today-avatar {
+  height: 64px;
+  width: 64px;
+  border-radius: 14px;
+  flex: 0 0 64px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-person-details h3 {
+  font-size: 19px;
+  margin: 2px 0 2px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-person-details p {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-priority {
+  font-size: 9px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-farm {
+  padding-top: 9px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-farm-title {
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-farm-location {
+  font-size: 11px;
+  margin: 0 0 7px;
+  line-height: 1.4;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-books {
+  gap: 7px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-book {
+  padding: 7px 5px;
+  gap: 3px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-book-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 9px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-book strong {
+  font-size: 10px;
+  line-height: 1.25;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-book small {
+  font-size: 9px;
+}
+
+#page-roadmap .coach-today-rich .coach-mini-tools {
+  margin-top: 3px;
+  gap: 8px;
+}
+
+#page-roadmap .coach-today-rich .coach-mini-tools .btn {
+  padding: 9px 12px;
+  font-size: 12px;
+  min-height: 36px;
+}
+
+#page-roadmap .coach-progress-track {
+  margin: 6px 0 4px;
+}
+
+#page-roadmap .coach-right-panel .coach-calendar {
+  grid-template-rows: 17px;
+  grid-auto-rows: 79px;
+  gap: 6px;
+}
+
+#page-roadmap .coach-calendar-day {
+  padding: 6px 3px;
+  gap: 3px;
+  border-radius: 9px;
+}
+
+#page-roadmap .coach-calendar-day span b {
+  font-size: 13px;
+}
+
+#page-roadmap .coach-calendar-day strong {
+  font-size: 10px;
+  margin-top: 1px;
+}
+
+#page-roadmap .coach-calendar-day small {
+  font-size: 9px;
+}
+
+#page-roadmap .coach-calendar-panel-head {
+  margin-bottom: 8px;
+}
+
+#page-roadmap .coach-right-panel .coach-calendar-note {
+  font-size: 10px;
+  margin-top: 8px;
+}
+
+/* At wide desktop sizes, keep both sections beside each other; on smaller screens
+   the calendar follows the complete Today task rather than squeezing either. */
+
+@media(min-width:1240px) {
+  #page-roadmap .coach-combined-grid {
+    grid-template-columns: minmax(0,1.04fr) minmax(0,1fr);
+  }
+}
+
+@media(max-width:1239px) {
+  #page-roadmap .coach-combined-grid {
+    grid-template-columns: minmax(0,1fr);
+    gap: 18px;
+  }
+}
+
+@media(max-width:800px) {
+
+  #page-roadmap .coach-heading {
+    margin-bottom: 7px;
+    gap: 5px;
+  }
+
+  #page-roadmap .coach-heading-right {
+    gap: 0;
+  }
+  #page-roadmap .coach-combined-card {
+    padding: 13px 12px;
+  }
+  #page-roadmap .coach-today-rich {
+    gap: 8px;
+    margin-top: 8px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-book-icon {
+    width: 43px;
+    height: 43px;
+  }
+  #page-roadmap .coach-left-panel .coach-progress-block {
+    margin-top: 11px!important;
+  }
+  #page-roadmap .coach-right-panel .coach-calendar {
+    grid-template-rows: none;
+    grid-auto-rows: 82px;
+  }
+}
+
+@media(max-width:430px) {
+
+  #page-roadmap .coach-today-rich .coach-today-avatar {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-book {
+    padding: 6px 3px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-book strong {
+    font-size: 9px;
+  }
+  #page-roadmap .coach-today-rich .coach-mini-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  #page-roadmap .coach-today-rich .coach-mini-tools .btn {
+    padding: 8px 5px;
+    font-size: 11px;
+  }
+}
+
+@media(max-height:680px) and (min-width:801px) {
+  #page-roadmap .coach-today-rich {
+    gap: 7px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-book-icon {
+    width: 39px;
+    height: 39px;
+  }
+  #page-roadmap .coach-right-panel .coach-calendar {
+    grid-auto-rows: 67px;
+  }
+}
+
+/* When material tracking is OFF, use the room freed by the hidden progress block.
+   This fills the Today column naturally without blank space or browser zoom. */
+
+@media (min-width:1240px) {
+  #page-roadmap #coach-active.tracking-off .coach-combined-grid {
+    align-items: stretch;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-left-panel {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    min-height: 0;
+  }
+  #page-roadmap #coach-active.tracking-off #coach-today {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-modal-farm {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-modal-books {
+    align-items: stretch;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-modal-book {
+    min-height: 118px;
+    justify-content: center;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-modal-book-icon {
+    width: 60px;
+    height: 60px;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-mini-tools {
+    margin-top: auto;
+    padding-top: 5px;
+  }
+}
+
+/* Character spotlight — stronger hierarchy without changing calendar or popup. */
+
+#page-roadmap .coach-today-rich .coach-modal-person-details {
+  gap: 16px;
+  align-items: center;
+}
+
+#page-roadmap .coach-today-rich .coach-today-avatar {
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
+  border-radius: 19px;
+}
+
+#page-roadmap .coach-today-rich .coach-today-avatar .picker-initials {
+  font-size: 30px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-person-details h3 {
+  font-size: clamp(23px,2vw,28px);
+  line-height: 1.18;
+  margin: 5px 0 6px;
+  letter-spacing: -.3px;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-person-details p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#page-roadmap .coach-today-rich .coach-modal-priority {
+  font-size: 10px;
+  letter-spacing: .7px;
+  line-height: 1.3;
+}
+
+@media(min-width:1240px) {
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-today-avatar {
+    width: 106px;
+    height: 106px;
+    flex-basis: 106px;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-modal-person-details h3 {
+    font-size: 28px;
+  }
+  #page-roadmap #coach-active.tracking-off .coach-today-rich .coach-modal-person-details p {
+    font-size: 15px;
+  }
+}
+
+@media(max-width:800px) {
+  #page-roadmap .coach-today-rich .coach-today-avatar {
+    width: 78px;
+    height: 78px;
+    flex-basis: 78px;
+    border-radius: 16px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-person-details {
+    gap: 12px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-person-details h3 {
+    font-size: 22px;
+    margin: 4px 0 4px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-person-details p {
+    font-size: 12px;
+  }
+}
+
+@media(max-width:430px) {
+  #page-roadmap .coach-today-rich .coach-today-avatar {
+    width: 70px;
+    height: 70px;
+    flex-basis: 70px;
+    border-radius: 15px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-person-details {
+    gap: 10px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-person-details h3 {
+    font-size: 21px;
+    line-height: 1.18;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-person-details p {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-priority {
+    font-size: 9px;
+  }
+}
+
+/* Character spotlight stays large, but must not change the original card height.
+   Tracking-enabled mode compresses secondary spacing, not the character info. */
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich {
+  gap: 5px;
+  margin-top: 6px;
+}
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-person-details {
+  gap: 13px;
+}
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-person-details h3 {
+  margin: 2px 0 2px;
+}
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-person-details p {
+  line-height: 1.28;
+}
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-farm {
+  padding-top: 5px;
+}
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-farm-location {
+  margin-bottom: 4px;
+}
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-book {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  gap: 2px;
+}
+
+#page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-mini-tools {
+  margin-top: 0;
+}
+
+@media (min-width:801px) and (max-width:1400px) {
+  #page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-farm {
+    padding-top: 3px;
+  }
+  #page-roadmap #coach-active:not(.tracking-off) .coach-today-rich .coach-modal-farm-location {
+    margin-bottom: 2px;
+  }
+}
+
+@media(max-width:430px) {
+  #page-roadmap .coach-today-rich {
+    gap: 6px;
+    margin-top: 6px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-person-details h3 {
+    margin: 2px 0 2px;
+  }
+  #page-roadmap .coach-today-rich .coach-modal-farm {
+    padding-top: 6px;
+  }
+}
